@@ -1,0 +1,31 @@
+<div id="loginContainer" class="text-center">
+	<div id="loginForm">
+
+		<div>
+			<h1>Login Page</h1>
+		</div>
+
+		<form novalidate name="loginForm">
+	
+			<div class="spacing">
+				<label for="loginName"> Username: </label>
+
+				<input type="text" id="loginName" name="loginName" ng-model="user.username" focus-directive enter-directive enter="login()">
+			</div>
+			
+			<div class="spacing">
+				<label for="loginPass"> Password: </label>	
+
+				<input type="text" id="loginPass" name="loginPass" ng-model="user.password" enter-directive enter="login()">
+			</div>
+
+			<div class="spacing pull-right">
+				<button ng-click="login()">Log in</button>
+			</div>
+			
+		</form>
+
+	
+	</div>
+
+</div>
