@@ -6,16 +6,19 @@ angular.module("schoolApp").controller("LoginController", ["$scope", "$location"
 			password: ""
 		};
 
-		$scope.errors = [];
+		$scope.submitted = false;
+
+		$scope.errors = {
+			available: false
+		};
 
 		$scope.login = function () {
-
+			$scope.submitted = true;
 			if ($scope.user.username && $scope.user.password) {
 				apiFactory.login($scope.user.username, $scope.user.password)
 					.then(function (results) {
 
 						console.log("LoginController results", results);
-
 						if (results.status === 200) {
 
 							userFactory.setUser(results.data.User);
@@ -26,14 +29,10 @@ angular.module("schoolApp").controller("LoginController", ["$scope", "$location"
 							}
 
 						}
-						// Something wrong with credentials most likely - add error for that
-						else {
-
-						}
-
+					}, function (results) {
+						$scope.errors.available = true;
 					});
 			}
-
 		};
 
 	}
