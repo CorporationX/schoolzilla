@@ -6,7 +6,7 @@ angular.module("schoolApp").directive("enterDirective", [function () {
 		},
 		link: function (scope, elem, attrs) {
 
-			$(elem).bind('keypress', function (e) {
+			elem.bind('keypress', function (e) {
 				var code = e.keyCode || e.which;
 
 				if (code == 13) {

@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <title>Code coverage report for services/httpInterceptor.js</title>
+    <title>Code coverage report for controllers/StudentHomeController.js</title>
     <meta charset="utf-8">
 
     <link rel="stylesheet" href="../prettify.css">
@@ -15,23 +15,23 @@
 </head>
 <body>
 <div class="header high">
-    <h1>Code coverage report for <span class="entity">services/httpInterceptor.js</span></h1>
+    <h1>Code coverage report for <span class="entity">controllers/StudentHomeController.js</span></h1>
     <h2>
         
-        Statements: <span class="metric">85.71% <small>(6 / 7)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Statements: <span class="metric">100% <small>(8 / 8)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         
         
-        Branches: <span class="metric">50% <small>(1 / 2)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Branches: <span class="metric">100% <small>(0 / 0)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         
         
         Functions: <span class="metric">100% <small>(3 / 3)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         
         
-        Lines: <span class="metric">85.71% <small>(6 / 7)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">100% <small>(8 / 8)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         
         Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
     </h2>
-    <div class="path"><a href="../index.html">All files</a> &#187; <a href="index.html">services/</a> &#187; httpInterceptor.js</div>
+    <div class="path"><a href="../index.html">All files</a> &#187; <a href="index.html">controllers/</a> &#187; StudentHomeController.js</div>
 </div>
 <div class="body">
 <pre><table class="coverage">
@@ -53,49 +53,43 @@
 16
 17
 18
-19
-20
-21</td><td class="line-coverage"><span class="cline-any cline-yes">1</span>
+19</td><td class="line-coverage"><span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">4</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
 <span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">15</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">angular.module("schoolApp").factory("httpInterceptor", ["userFactory", function (userFactory) {
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">angular.module("schoolApp").controller("StudentHomeController", ["$scope", "apiFactory", "userFactory",
 &nbsp;
-	var requestIntercepter = {
-		request: function (config) {
+	function ($scope, apiFactory, userFactory) {
 &nbsp;
-			<span class="missing-if-branch" title="if path not taken" >I</span>if (userFactory.getToken()) {
-<span class="cstat-no" title="statement not covered" >				config.headers.Authorization = "Basic " + userFactory.getToken();</span>
-			}
+		$scope.evaluations = [];
 &nbsp;
-			return config;
+		$scope.init = function () {
+			userFactory.checkValid();
+			apiFactory.studentGetEvaluations().then(function (results) {
+				console.log("StudentHomeController results", results);
 &nbsp;
-		}
-	};
+				$scope.evaluations = results.data;
+			});
+		};
 &nbsp;
-	return requestIntercepter;
+		$scope.init();
 &nbsp;
-}])
-&nbsp;
-.config(["$httpProvider", function ($httpProvider) {
-	$httpProvider.interceptors.push("httpInterceptor");
-}]);</pre></td></tr>
+	}
+]);</pre></td></tr>
 </table></pre>
 
 </div>

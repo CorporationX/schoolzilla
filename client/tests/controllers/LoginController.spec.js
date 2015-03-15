@@ -4,9 +4,16 @@ describe('LoginController', function () {
 	var $scope;
 	var $q;
 	var $rootScope;
+	var $location;
 	var deferred;
 	var mockApiFactory;
 	var mockUserFactory;
+
+	var studentObject = {
+		FullName: "Kristjan",
+		Role: "student",
+		Username: "kristjanj11"
+	};
 
 	beforeEach(module("schoolApp"));
 
@@ -30,6 +37,12 @@ describe('LoginController', function () {
 			}
 		};
 
+		$location = {
+			path: function (thePath) {
+
+			}
+		};
+
 	});
 
 	beforeEach(inject(function (_$q_, _$controller_, _$rootScope_) {
@@ -41,6 +54,7 @@ describe('LoginController', function () {
 
 		$controller = _$controller_("LoginController", {
 			$scope: $scope,
+			$location: $location,
 			apiFactory: mockApiFactory,
 			userFactory: mockUserFactory
 		});
@@ -71,7 +85,7 @@ describe('LoginController', function () {
 
 		deferred.resolve({
 			data: {
-				User: "kristjanj11",
+				User: studentObject,
 				Token: "1234"
 			},
 			status: 200
@@ -79,8 +93,32 @@ describe('LoginController', function () {
 
 		$rootScope.$apply();
 
-		expect(mockUserFactory.setUser).toHaveBeenCalledWith("kristjanj11");
+		expect(mockUserFactory.setUser).toHaveBeenCalledWith(studentObject);
 		expect(mockUserFactory.setToken).toHaveBeenCalledWith("1234");
+	});
+
+	it("should redirect on a successful login as a student", function () {
+
+		spyOn($location, "path").and.callThrough();
+
+		$scope.user = {
+			username: "kristjanj11",
+			password: 123456
+		};
+
+		$scope.login();
+
+		deferred.resolve({
+			data: {
+				User: studentObject,
+				Token: "1234"
+			},
+			status: 200
+		});
+
+		$rootScope.$apply();
+
+		expect($location.path).toHaveBeenCalled();
 	});
 
 });

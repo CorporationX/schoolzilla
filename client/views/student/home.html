@@ -1,0 +1,22 @@
+<div class="container-fluid">
+
+	<div class="row">
+		<div class="col-md-6 col-md-offset-3 mainContent">
+			<div class="row text-center">
+				<h1>Student Evaluations</h1>
+			</div>
+
+			<div class="row">
+				<h3>Please evaluate the following:</h3>
+
+				<ul>
+					<li ng-repeat="eval in evaluations">
+						{{eval.CourseName}} + "  -  " + {{eval.TemplateName}}
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+
+</div>

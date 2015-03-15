@@ -4,7 +4,7 @@ angular.module("schoolApp").factory("httpInterceptor", ["userFactory", function 
 		request: function (config) {
 
 			if (userFactory.getToken()) {
-				console.log("Add token header");
+				config.headers.Authorization = "Basic " + userFactory.getToken();
 			}
 
 			return config;

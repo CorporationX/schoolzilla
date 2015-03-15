@@ -6,9 +6,9 @@ var stylish = require('jshint-stylish');
 
 var locations = {
 	src: {
-		scripts: ["client/**/*.js", "client/*.js", "!client/tests/*.js"],
+		scripts: ["client/**/*.js", "client/*.js", "!client/tests/*.js", "!client/tests/**/*.js"],
 		styles: "client/css/index.less",
-		css: "client/css/*.less"
+		css: ["client/css/*.less", "client/css/**/*.less"]
 	},
 	dest: {
 		scripts: "build/scripts",

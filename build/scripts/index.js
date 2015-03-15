@@ -6,30 +6,24 @@ angular.module("schoolApp", ["ngRoute"])
 	$routeProvider.when("/login", {
 			templateUrl: "/client/views/login.html",
 			controller: "LoginController"
-		}).when("/home", {
-			templateUrl: "/client/views/home.html",
-			controller: "HomeController"
+		}).when("/student/home", {
+			templateUrl: "/client/views/student/home.html",
+			controller: "StudentHomeController"
 		})
 		.otherwise({
 			redirectTo: "/login"
 		});
 
 }]);
-angular.module("schoolApp").controller("HomeController", ["$scope",
-
-	function ($scope) {
-
-
-
-	}
-]);
-angular.module("schoolApp").controller("LoginController", ["$scope", "apiFactory", "userFactory",
-	function ($scope, apiFactory, userFactory) {
+angular.module("schoolApp").controller("LoginController", ["$scope", "$location", "apiFactory", "userFactory",
+	function ($scope, $location, apiFactory, userFactory) {
 
 		$scope.user = {
 			username: "",
 			password: ""
 		};
+
+		$scope.errors = [];
 
 		$scope.login = function () {
 
@@ -37,29 +31,46 @@ angular.module("schoolApp").controller("LoginController", ["$scope", "apiFactory
 				apiFactory.login($scope.user.username, $scope.user.password)
 					.then(function (results) {
 
+						console.log("LoginController results", results);
+
 						if (results.status === 200) {
 
 							userFactory.setUser(results.data.User);
 							userFactory.setToken(results.data.Token);
 
-							console.log("status 200");
+							if (results.data.User.Role === "student") {
+								$location.path("/student/home");
+							}
 
 						}
 						// Something wrong with credentials most likely - add error for that
 						else {
 
-
-
 						}
 
 					});
 			}
-			// Username and password must be filled in to attempt to login
-			else {
-
-			}
 
 		};
+
+	}
+]);
+angular.module("schoolApp").controller("StudentHomeController", ["$scope", "apiFactory", "userFactory",
+
+	function ($scope, apiFactory, userFactory) {
+
+		$scope.evaluations = [];
+
+		$scope.init = function () {
+			userFactory.checkValid();
+			apiFactory.studentGetEvaluations().then(function (results) {
+				console.log("StudentHomeController results", results);
+
+				$scope.evaluations = results.data;
+			});
+		};
+
+		$scope.init();
 
 	}
 ]);
@@ -71,7 +82,7 @@ angular.module("schoolApp").directive("enterDirective", [function () {
 		},
 		link: function (scope, elem, attrs) {
 
-			$(elem).bind('keypress', function (e) {
+			elem.bind('keypress', function (e) {
 				var code = e.keyCode || e.which;
 
 				if (code == 13) {
@@ -83,7 +94,7 @@ angular.module("schoolApp").directive("enterDirective", [function () {
 		}
 	};
 }]);
-angular.module("schoolApp").directive("focusDirective", ["$timeout", "$parse", function ($timeout, $parse) {
+angular.module("schoolApp").directive("focusDirective", ["$timeout", function ($timeout) {
 	return {
 		restrict: 'A',
 		link: function (scope, elem, attrs) {
@@ -105,7 +116,7 @@ angular.module("schoolApp").directive("focusDirective", ["$timeout", "$parse", f
 		}
 	};
 }]);
-angular.module("schoolApp").factory("apiFactory", ["$http", function ($http) {
+angular.module("schoolApp").factory("apiFactory", ["$http", "userFactory", function ($http, userFactory) {
 
 	return {
 		login: function (username, password) {
@@ -113,6 +124,9 @@ angular.module("schoolApp").factory("apiFactory", ["$http", function ($http) {
 				user: username,
 				pass: password
 			});
+		},
+		studentGetEvaluations: function () {
+			return $http.get("http://dispatch.ru.is/demo/api/v1/my/evaluations");
 		}
 	};
 
@@ -123,7 +137,7 @@ angular.module("schoolApp").factory("httpInterceptor", ["userFactory", function 
 		request: function (config) {
 
 			if (userFactory.getToken()) {
-				console.log("Add token header");
+				config.headers.Authorization = "Basic " + userFactory.getToken();
 			}
 
 			return config;
@@ -138,23 +152,28 @@ angular.module("schoolApp").factory("httpInterceptor", ["userFactory", function 
 .config(["$httpProvider", function ($httpProvider) {
 	$httpProvider.interceptors.push("httpInterceptor");
 }]);
-angular.module("schoolApp").factory("userFactory", [function () {
+angular.module("schoolApp").factory("userFactory", ["$rootScope", "$location", function ($rootScope, $location) {
 
-	var user = {};
-	var token = "";
+	$rootScope.user = {};
+	$rootScope.token = "";
 
 	return {
 		setUser: function (newUser) {
-			user = newUser;
+			$rootScope.user = newUser;
 		},
 		getUser: function () {
-			return user;
+			return $rootScope.user;
 		},
 		setToken: function (newToken) {
-			token = newToken;
+			$rootScope.token = newToken;
 		},
 		getToken: function () {
-			return token;
+			return $rootScope.token;
+		},
+		checkValid: function () {
+			if (!this.getToken() || !this.getUser()) {
+				$location.path("/login");
+			}
 		}
 	};
 

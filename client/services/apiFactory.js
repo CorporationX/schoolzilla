@@ -1,4 +1,4 @@
-angular.module("schoolApp").factory("apiFactory", ["$http", function ($http) {
+angular.module("schoolApp").factory("apiFactory", ["$http", "userFactory", function ($http, userFactory) {
 
 	return {
 		login: function (username, password) {
@@ -6,6 +6,9 @@ angular.module("schoolApp").factory("apiFactory", ["$http", function ($http) {
 				user: username,
 				pass: password
 			});
+		},
+		studentGetEvaluations: function () {
+			return $http.get("http://dispatch.ru.is/demo/api/v1/my/evaluations");
 		}
 	};
 

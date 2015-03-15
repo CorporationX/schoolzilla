@@ -6,9 +6,9 @@ angular.module("schoolApp", ["ngRoute"])
 	$routeProvider.when("/login", {
 			templateUrl: "/client/views/login.html",
 			controller: "LoginController"
-		}).when("/home", {
-			templateUrl: "/client/views/home.html",
-			controller: "HomeController"
+		}).when("/student/home", {
+			templateUrl: "/client/views/student/home.html",
+			controller: "StudentHomeController"
 		})
 		.otherwise({
 			redirectTo: "/login"

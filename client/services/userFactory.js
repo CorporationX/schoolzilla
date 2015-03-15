@@ -1,20 +1,25 @@
-angular.module("schoolApp").factory("userFactory", [function () {
+angular.module("schoolApp").factory("userFactory", ["$rootScope", "$location", function ($rootScope, $location) {
 
-	var user = {};
-	var token = "";
+	$rootScope.user = {};
+	$rootScope.token = "";
 
 	return {
 		setUser: function (newUser) {
-			user = newUser;
+			$rootScope.user = newUser;
 		},
 		getUser: function () {
-			return user;
+			return $rootScope.user;
 		},
 		setToken: function (newToken) {
-			token = newToken;
+			$rootScope.token = newToken;
 		},
 		getToken: function () {
-			return token;
+			return $rootScope.token;
+		},
+		checkValid: function () {
+			if (!this.getToken() || !this.getUser()) {
+				$location.path("/login");
+			}
 		}
 	};
 
