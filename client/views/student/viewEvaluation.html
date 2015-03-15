@@ -1,1 +1,35 @@
-{{evaluation}}
+<div ng-show="evaluation.data">
+	<h1>
+		{{evaluation.data.Text}}
+	</h1>
+
+	<h2>
+		{{evaluation.data.IntroText}}
+	</h2>
+
+	<h3>
+		Course Questions
+	</h3>
+
+	<div>
+		<evaluation-question ng-repeat="courseQ in evaluation.data.CourseQuestions" answers="answers" ng-model="courseQ" teacher="">
+		</evaluation-question>
+	</div>
+
+	<h3>
+		Teacher Questions	
+	</h3>
+
+	<div ng-repeat="teacher in evaluation.teachers">
+		Evaluation Questions for {{teacher.FullName}}
+
+		<div>
+			<evaluation-question ng-repeat="teacherQ in evaluation.data.TeacherQuestions" answers="answers" ng-model="teacherQ" teacher="teacher.SSN">
+			</evaluation-question>			
+		</div>
+	</div>
+
+</div>
+
+
+{{answers}}
