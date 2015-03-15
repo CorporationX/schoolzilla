@@ -5,9 +5,6 @@
   padding: 40px;
   margin-top: 50px;
 }
-#loginForm .spacing {
-  margin: 5px 0;
-}
 #loginForm .errormessage {
   color: #ff0000;
   display: block;
@@ -24,6 +21,7 @@ body {
 }
 .mainContent .tablecolor td {
   background-color: white;
+  word-break: break-all;
 }
 .mainContent .backgroundcolor {
   background-color: #f5f5f5;

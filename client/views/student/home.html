@@ -7,12 +7,23 @@
 			<h4 class="col-sm-6 col-sm-offset-3 italic">Please evaluate the following courses:</h4>			
 		
 		</div>
-		<div class="col-sm-6 col-sm-offset-3 mainContent">
+		<div class="col-sm-6 col-sm-offset-3  mainContent">
 			<div class="row padding">
 				<table class="table table-striped">
+					<tr>
+						<th>Nafn áfanga (<span class="italic">Course name</span>):</th>
+						<th>Mat (<span class="italic">Evaluation</span>):</th>
+						<th></th>
+					</tr>
 					<tbody ng-repeat="eval in evaluations">
-						<tr class="tablecolor"><td class="col-xs-8">{{eval.CourseName}} - {{eval.TemplateName}}</td><td class="col-xs-4"><button class="pull-right btn btn-default btn-sm backgroundcolor" ng-click="openEvaluation(eval.CourseID, eval.Semester, eval.ID)">Meta (<span class="italic">Evaluate</span>)
-						</button></td></tr>
+						<tr class="tablecolor">
+							<td class="col-xs-7">{{eval.CourseName}}</td>
+							<td class="col-xs-4">{{eval.TemplateName}}</td>
+							<td class="col-xs-1">
+								<button class="pull-right btn btn-default btn-sm backgroundcolor" ng-click="openEvaluation(eval.CourseID, eval.Semester, eval.ID)">Meta (<span class="italic">Evaluate</span>)
+								</button>
+							</td>
+						</tr>
 					</tbody>
 				</table>
 			</div>
