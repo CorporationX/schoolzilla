@@ -8,10 +8,6 @@
 #loginForm .spacing {
   margin: 5px 0;
 }
-#loginForm input,
-#loginForm textarea {
-  max-width: 100%;
-}
 #loginForm .errormessage {
   color: #ff0000;
   display: block;
