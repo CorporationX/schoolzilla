@@ -21,12 +21,13 @@ body {
 .mainContent {
   background-color: white;
   border: 1px solid black;
-  border-radius: 10px;
 }
-.mainContent li {
-  line-height: 35px;
-  list-style-type: none;
+.mainContent .tablecolor td {
+  background-color: white;
 }
-.mainContent button {
-  height: 30px;
+.mainContent .backgroundcolor {
+  background-color: #f5f5f5;
+}
+.italic {
+  font-style: italic;
 }

@@ -1,24 +1,20 @@
 <div class="container-fluid">
 
 	<div class="row">
-		<div class="col-md-6 col-md-offset-3 mainContent">
-			<div class="row text-center">
-				<h1>Kennslumat </h1>
-			</div>
 
-			<div class="row">
-				<h3>Please evaluate the following:</h3>
-
-				<ul>
-					<li ng-repeat="eval in evaluations">
-						<span class="col-xs-8">
-							{{eval.CourseName}} + "  -  " + {{eval.TemplateName}}
-						</span>
-						<button class="pull-right btn btn-default col-xs-4" ng-click="openEvaluation(eval.CourseID, eval.Semester, eval.ID)">
-							Evaluate
-						</button>
-					</li>
-				</ul>
+		<div class="row text-center">
+			<h3 class="col-sm-6 col-sm-offset-3">Vinsamlegast metið eftirfarandi áfanga:</h3>	
+			<h4 class="col-sm-6 col-sm-offset-3 italic">Please evaluate the following courses:</h4>			
+		
+		</div>
+		<div class="col-sm-6 col-sm-offset-3 mainContent">
+			<div class="row padding">
+				<table class="table table-striped">
+					<tbody ng-repeat="eval in evaluations">
+						<tr class="tablecolor"><td class="col-xs-8">{{eval.CourseName}} - {{eval.TemplateName}}</td><td class="col-xs-4"><button class="pull-right btn btn-default btn-sm backgroundcolor" ng-click="openEvaluation(eval.CourseID, eval.Semester, eval.ID)">Meta (<span class="italic">Evaluate</span>)
+						</button></td></tr>
+					</tbody>
+				</table>
 			</div>
 		</div>
 	</div>
