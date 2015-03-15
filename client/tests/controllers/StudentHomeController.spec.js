@@ -4,6 +4,7 @@ describe('StudentHomeController', function () {
 	var $scope;
 	var $q;
 	var $rootScope;
+	var $location;
 	var deferred;
 	var mockApiFactory;
 	var mockUserFactory;
@@ -47,9 +48,11 @@ describe('StudentHomeController', function () {
 
 	});
 
-	beforeEach(inject(function (_$q_, _$controller_, _$rootScope_) {
+	beforeEach(inject(function (_$q_, _$controller_, _$rootScope_, _$location_) {
 		$rootScope = _$rootScope_;
 		$scope = $rootScope.$new();
+
+		$location = _$location_;
 
 		$q = _$q_;
 
@@ -90,6 +93,20 @@ describe('StudentHomeController', function () {
 		$rootScope.$apply();
 
 		expect($scope.evaluations.length).toEqual(2);
+
+	});
+
+	it("should redirect when an evaluation is opened", function () {
+
+		spyOn($location, "path").and.callThrough();
+
+		expect($scope.evaluations.length).toEqual(0);
+
+		$scope.openEvaluation("vef2", "20151", 33);
+
+		$rootScope.$apply();
+
+		expect($location.path).toHaveBeenCalledWith("/student/course/vef2/20151/evaluation/33");
 
 	});
 

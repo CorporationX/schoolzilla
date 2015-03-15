@@ -9,6 +9,9 @@ angular.module("schoolApp", ["ngRoute"])
 		}).when("/student/home", {
 			templateUrl: "/client/views/student/home.html",
 			controller: "StudentHomeController"
+		}).when("/student/course/:courseID/:semesterID/evaluation/:evalID", {
+			templateUrl: "client/views/student/viewEvaluation.html",
+			controller: "StudentViewEvaluationController"
 		})
 		.otherwise({
 			redirectTo: "/login"

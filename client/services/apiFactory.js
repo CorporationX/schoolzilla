@@ -9,6 +9,10 @@ angular.module("schoolApp").factory("apiFactory", ["$http", "userFactory", funct
 		},
 		studentGetEvaluations: function () {
 			return $http.get("http://dispatch.ru.is/demo/api/v1/my/evaluations");
+		},
+		studentGetEvaluation: function (evaluationVariables) {
+			return $http.get("http://dispatch.ru.is/demo/api/v1/courses/" + evaluationVariables.courseID + "/" + evaluationVariables.semesterID +
+				"/evaluations/" + evaluationVariables.evalID);
 		}
 	};
 

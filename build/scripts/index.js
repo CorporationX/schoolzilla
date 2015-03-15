@@ -9,6 +9,9 @@ angular.module("schoolApp", ["ngRoute"])
 		}).when("/student/home", {
 			templateUrl: "/client/views/student/home.html",
 			controller: "StudentHomeController"
+		}).when("/student/course/:courseID/:semesterID/evaluation/:evalID", {
+			templateUrl: "client/views/student/viewEvaluation.html",
+			controller: "StudentViewEvaluationController"
 		})
 		.otherwise({
 			redirectTo: "/login"
@@ -55,19 +58,49 @@ angular.module("schoolApp").controller("LoginController", ["$scope", "$location"
 
 	}
 ]);
-angular.module("schoolApp").controller("StudentHomeController", ["$scope", "apiFactory", "userFactory",
+angular.module("schoolApp").controller("StudentHomeController", ["$scope", "$location", "apiFactory", "userFactory",
 
-	function ($scope, apiFactory, userFactory) {
+	function ($scope, $location, apiFactory, userFactory) {
 
 		$scope.evaluations = [];
 
+		$scope.openEvaluation = function (courseID, semesterID, evalID) {
+			$location.path("/student/course/" + courseID + "/" + semesterID + "/evaluation/" + evalID);
+		};
+
 		$scope.init = function () {
 			userFactory.checkValid();
+
 			apiFactory.studentGetEvaluations().then(function (results) {
 				console.log("StudentHomeController results", results);
 
 				$scope.evaluations = results.data;
 			});
+		};
+
+		$scope.init();
+
+	}
+]);
+angular.module("schoolApp").controller("StudentViewEvaluationController", ["$scope", "$routeParams", "apiFactory", "userFactory",
+
+	function ($scope, $routeParams, apiFactory, userFactory) {
+
+		$scope.evaluationVariables = {
+			courseID: $routeParams.courseID,
+			semesterID: $routeParams.semesterID,
+			evalID: $routeParams.evalID
+		};
+
+
+		$scope.init = function () {
+
+			userFactory.checkValid();
+
+			apiFactory.studentGetEvaluation($scope.evaluationVariables).then(function (results) {
+				console.log("results", results);
+			});
+
 		};
 
 		$scope.init();
@@ -127,6 +160,10 @@ angular.module("schoolApp").factory("apiFactory", ["$http", "userFactory", funct
 		},
 		studentGetEvaluations: function () {
 			return $http.get("http://dispatch.ru.is/demo/api/v1/my/evaluations");
+		},
+		studentGetEvaluation: function (evaluationVariables) {
+			return $http.get("http://dispatch.ru.is/demo/api/v1/courses/" + evaluationVariables.courseID + "/" + evaluationVariables.semesterID +
+				"/evaluations/" + evaluationVariables.evalID);
 		}
 	};
 

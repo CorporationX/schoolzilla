@@ -11,7 +11,12 @@
 
 				<ul>
 					<li ng-repeat="eval in evaluations">
-						{{eval.CourseName}} + "  -  " + {{eval.TemplateName}}
+						<span class="col-xs-8">
+							{{eval.CourseName}} + "  -  " + {{eval.TemplateName}}
+						</span>
+						<button class="pull-right btn btn-default col-xs-4" ng-click="openEvaluation(eval.CourseID, eval.Semester, eval.ID)">
+							Evaluate
+						</button>
 					</li>
 				</ul>
 			</div>
