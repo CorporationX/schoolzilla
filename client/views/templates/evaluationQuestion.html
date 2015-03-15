@@ -1,0 +1,14 @@
+<div>
+	<h2>{{question.Text}}</h2>
+	
+	<div ng-show="question.Type === 'text'">
+		<textarea ng-model="answers[ID].value" width="50" height="50">
+			
+		</textarea>
+	</div>
+
+	<div ng-repeat="answer in question.Answers" ng-show="question.Type === 'single'">
+			<input type="radio" ng-model="answers[ID].value" ng-value="answer.ID"> {{answer.Text}}
+	
+	</div>
+</div>

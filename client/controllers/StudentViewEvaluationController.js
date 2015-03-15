@@ -13,6 +13,9 @@ angular.module("schoolApp").controller("StudentViewEvaluationController", ["$sco
 			data: {}
 		};
 
+		$scope.answers = {
+
+		};
 
 		$scope.init = function () {
 
@@ -20,10 +23,12 @@ angular.module("schoolApp").controller("StudentViewEvaluationController", ["$sco
 
 			apiFactory.studentGetEvaluation($scope.evaluationVariables).then(function (results) {
 				$scope.evaluation.data = results.data;
+				console.log("StudentViewEvaluationController evaluation results", results);
 			});
 
 			apiFactory.studentGetTeachers($scope.evaluationVariables).then(function (results) {
 				$scope.evaluation.teachers = results.data;
+				console.log("StudentViewEvaluationController teacher results", results);
 			});
 
 		};
