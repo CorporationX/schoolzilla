@@ -13,6 +13,9 @@ angular.module("schoolApp").factory("apiFactory", ["$http", "userFactory", funct
 		studentGetEvaluation: function (evaluationVariables) {
 			return $http.get("http://dispatch.ru.is/demo/api/v1/courses/" + evaluationVariables.courseID + "/" + evaluationVariables.semesterID +
 				"/evaluations/" + evaluationVariables.evalID);
+		},
+		studentGetTeachers: function (evaluationVariables) {
+			return $http.get("http://dispatch.ru.is/demo/api/v1/courses/" + evaluationVariables.courseID + "/" + evaluationVariables.semesterID + "/teachers");
 		}
 	};
 

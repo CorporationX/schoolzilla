@@ -69,6 +69,7 @@ describe('LoginController', function () {
 		expect($scope.user).toBeDefined();
 		expect($scope.user.username).toBeDefined();
 		expect($scope.user.password).toBeDefined();
+		expect($scope.errors.available).toEqual(false);
 	});
 
 	it("should set variables through userFactory on successful login", function () {
@@ -119,6 +120,22 @@ describe('LoginController', function () {
 		$rootScope.$apply();
 
 		expect($location.path).toHaveBeenCalled();
+	});
+
+	it("should add an error when we do not post a successful login", function () {
+
+		$scope.user = {
+			username: "kristjanj11",
+			password: 123456
+		};
+
+		$scope.login();
+
+		deferred.reject({});
+
+		$rootScope.$apply();
+
+		expect($scope.errors.available).toEqual(true);
 	});
 
 });

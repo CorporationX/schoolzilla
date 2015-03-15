@@ -36,6 +36,39 @@ describe('apiFactory', function () {
 	});
 
 
+	it("should get the student evaluation when requested", function () {
+
+		var evaluationVariables = {
+			courseID: "vef2",
+			semesterID: "20151",
+			evalID: 123
+		};
+
+		$httpBackend.expect("GET", "http://dispatch.ru.is/demo/api/v1/courses/vef2/20151/evaluations/123").respond(200);
+
+		apiFactory.studentGetEvaluation(evaluationVariables);
+
+		$httpBackend.flush();
+
+	});
+
+	it("should get the students teachers when requested", function () {
+
+		var evaluationVariables = {
+			courseID: "vef2",
+			semesterID: "20151",
+			evalID: 123
+		};
+
+		$httpBackend.expect("GET", "http://dispatch.ru.is/demo/api/v1/courses/vef2/20151/teachers").respond(200);
+
+		apiFactory.studentGetTeachers(evaluationVariables);
+
+		$httpBackend.flush();
+
+	});
+
+
 	afterEach(function () {
 
 		$httpBackend.verifyNoOutstandingExpectation();

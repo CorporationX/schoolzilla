@@ -80,8 +80,6 @@ describe('StudentHomeController', function () {
 
 	it("should populate evaluations with evaluations after initialization", function () {
 
-		spyOn(mockUserFactory, "checkValid").and.callThrough();
-
 		expect($scope.evaluations.length).toEqual(0);
 
 		$scope.init();
