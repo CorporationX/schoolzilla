@@ -2,7 +2,7 @@ angular.module("schoolApp").controller("AdminHomeController", ["$scope", "$modal
 
 	function ($scope, $modal, apiFactory, userFactory) {
 
-		$scope.createTemplate = function (){
+		$scope.createTemplate = function () {
 
 			$scope.modalInstance = $modal.open({
 				templateUrl: "/client/views/modals/newTemplateModal.html",
@@ -12,6 +12,24 @@ angular.module("schoolApp").controller("AdminHomeController", ["$scope", "$modal
 			$scope.modalInstance.result.then(function (selectedItem){
 
 				
+
+			});
+
+		};
+
+		$scope.viewTemplate = function (templateID) {
+
+			apiFactory.adminGetTemplate(templateID).then(function (results) {
+
+				var modalInstance = $modal.open({
+					templateUrl: "/client/views/modals/viewTemplateModal.html",
+					controller: "ViewTemplateModalController",
+					resolve: {
+						currentTemplate: function () {
+							return results;
+						}
+					}
+				});
 
 			});
 
