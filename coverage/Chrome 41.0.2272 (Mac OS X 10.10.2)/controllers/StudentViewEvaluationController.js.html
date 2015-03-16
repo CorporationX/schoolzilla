@@ -14,20 +14,20 @@
     </style>
 </head>
 <body>
-<div class="header high">
+<div class="header low">
     <h1>Code coverage report for <span class="entity">controllers/StudentViewEvaluationController.js</span></h1>
     <h2>
         
-        Statements: <span class="metric">100% <small>(13 / 13)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Statements: <span class="metric">7.69% <small>(1 / 13)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         
         
         Branches: <span class="metric">100% <small>(0 / 0)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         
         
-        Functions: <span class="metric">100% <small>(4 / 4)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Functions: <span class="metric">0% <small>(0 / 4)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         
         
-        Lines: <span class="metric">100% <small>(13 / 13)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">7.69% <small>(1 / 13)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         
         Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
     </h2>
@@ -77,76 +77,76 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">5</span>
-<span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">5</span>
-<span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">angular.module("schoolApp").controller("StudentViewEvaluationController", ["$scope", "$routeParams", "apiFactory", "userFactory",
 &nbsp;
-	function ($scope, $routeParams, apiFactory, userFactory) {
+<span class="fstat-no" title="function not covered" >	function ($scope, $routeParams, apiFactory, userFactory) {</span>
 &nbsp;
-		$scope.evaluationVariables = {
+<span class="cstat-no" title="statement not covered" >		$scope.evaluationVariables = {</span>
 			courseID: $routeParams.courseID,
 			semesterID: $routeParams.semesterID,
 			evalID: $routeParams.evalID
 		};
 &nbsp;
-		$scope.evaluation = {
+<span class="cstat-no" title="statement not covered" >		$scope.evaluation = {</span>
 			teachers: null,
 			data: {}
 		};
 &nbsp;
-		$scope.answers = {
+<span class="cstat-no" title="statement not covered" >		$scope.answers = {</span>
 &nbsp;
 		};
 &nbsp;
-		$scope.init = function () {
+<span class="cstat-no" title="statement not covered" >		$scope.init = <span class="fstat-no" title="function not covered" >function () {</span></span>
 &nbsp;
-			userFactory.checkValid();
+<span class="cstat-no" title="statement not covered" >			userFactory.checkValid();</span>
 &nbsp;
-			apiFactory.studentGetEvaluation($scope.evaluationVariables).then(function (results) {
-				$scope.evaluation.data = results.data;
-				console.log("StudentViewEvaluationController evaluation results", results);
+<span class="cstat-no" title="statement not covered" >			apiFactory.studentGetEvaluation($scope.evaluationVariables).then(<span class="fstat-no" title="function not covered" >function (results) {</span></span>
+<span class="cstat-no" title="statement not covered" >				$scope.evaluation.data = results.data;</span>
+<span class="cstat-no" title="statement not covered" >				console.log("StudentViewEvaluationController evaluation results", results);</span>
 			});
 &nbsp;
-			apiFactory.studentGetTeachers($scope.evaluationVariables).then(function (results) {
-				$scope.evaluation.teachers = results.data;
-				console.log("StudentViewEvaluationController teacher results", results);
+<span class="cstat-no" title="statement not covered" >			apiFactory.studentGetTeachers($scope.evaluationVariables).then(<span class="fstat-no" title="function not covered" >function (results) {</span></span>
+<span class="cstat-no" title="statement not covered" >				$scope.evaluation.teachers = results.data;</span>
+<span class="cstat-no" title="statement not covered" >				console.log("StudentViewEvaluationController teacher results", results);</span>
 			});
 &nbsp;
 		};
 &nbsp;
-		$scope.init();
+<span class="cstat-no" title="statement not covered" >		$scope.init();</span>
 &nbsp;
 	}
 ]);</pre></td></tr>
@@ -154,7 +154,7 @@
 
 </div>
 <div class="footer">
-    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon Mar 16 2015 10:24:14 GMT+0000 (GMT)</div>
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon Mar 16 2015 17:02:36 GMT+0000 (GMT)</div>
 </div>
 
 <script src="../prettify.js"></script>
