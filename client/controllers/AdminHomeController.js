@@ -4,14 +4,14 @@ angular.module("schoolApp").controller("AdminHomeController", ["$scope", "$modal
 
 		$scope.createTemplate = function (){
 
-			var modalInstance = $modal.open({
+			$scope.modalInstance = $modal.open({
 				templateUrl: "/client/views/modals/newTemplateModal.html",
 				controller: "NewTemplateModalController"
 			});
 
-			modalInstance.result.then(function (selectedItem){
+			$scope.modalInstance.result.then(function (selectedItem){
 
-
+				
 
 			});
 
