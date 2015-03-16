@@ -1,7 +1,7 @@
 .mainContent{
 	background-color: white;
 	border: 1px solid black;
-	//border-radius: @main-border-radius;
+	border-radius: @main-border-radius;
 
 	.tablecolor td{
 		background-color:white;
@@ -11,10 +11,12 @@
 	.backgroundcolor{
 		background-color: @background-color-main;
 	}
-	.table{
+	
+	#firstheader{
+		border-top-left-radius: @main-border-radius;
 	}
-}
 
-.italic{
-	font-style: italic;
+	#lastheader{
+		border-top-right-radius: @main-border-radius;
+	}
 }

@@ -11,7 +11,6 @@ angular.module("schoolApp").directive("evaluationQuestion", [function () {
 
 
 			if (!scope.teacher) {
-				console.log("came here");
 				scope.ID = scope.question.ID;
 
 				scope.answers[scope.ID] = {

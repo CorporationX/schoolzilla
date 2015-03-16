@@ -1,4 +1,4 @@
-angular.module("schoolApp", ["ngRoute"])
+angular.module("schoolApp", ["ngRoute", "ui.bootstrap"])
 
 
 .config(["$routeProvider", function ($routeProvider) {

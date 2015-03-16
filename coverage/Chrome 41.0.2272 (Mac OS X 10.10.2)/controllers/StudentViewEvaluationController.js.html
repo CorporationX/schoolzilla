@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <title>Code coverage report for controllers/LoginController.js</title>
+    <title>Code coverage report for controllers/StudentViewEvaluationController.js</title>
     <meta charset="utf-8">
 
     <link rel="stylesheet" href="../prettify.css">
@@ -15,23 +15,23 @@
 </head>
 <body>
 <div class="header high">
-    <h1>Code coverage report for <span class="entity">controllers/LoginController.js</span></h1>
+    <h1>Code coverage report for <span class="entity">controllers/StudentViewEvaluationController.js</span></h1>
     <h2>
         
-        Statements: <span class="metric">100% <small>(15 / 15)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Statements: <span class="metric">100% <small>(13 / 13)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         
         
-        Branches: <span class="metric">62.5% <small>(5 / 8)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Branches: <span class="metric">100% <small>(0 / 0)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         
         
         Functions: <span class="metric">100% <small>(4 / 4)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         
         
-        Lines: <span class="metric">100% <small>(15 / 15)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">100% <small>(13 / 13)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         
         Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
     </h2>
-    <div class="path"><a href="../index.html">All files</a> &#187; <a href="index.html">controllers/</a> &#187; LoginController.js</div>
+    <div class="path"><a href="../index.html">All files</a> &#187; <a href="index.html">controllers/</a> &#187; StudentViewEvaluationController.js</div>
 </div>
 <div class="body">
 <pre><table class="coverage">
@@ -76,77 +76,77 @@
 39</td><td class="line-coverage"><span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">4</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">4</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">4</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">4</span>
-<span class="cline-any cline-yes">3</span>
-<span class="cline-any cline-yes">3</span>
 <span class="cline-any cline-yes">3</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2</span>
-<span class="cline-any cline-yes">2</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2</span>
-<span class="cline-any cline-yes">2</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2</span>
-<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">angular.module("schoolApp").controller("LoginController", ["$scope", "$location", "apiFactory", "userFactory",
-	function ($scope, $location, apiFactory, userFactory) {
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">angular.module("schoolApp").controller("StudentViewEvaluationController", ["$scope", "$routeParams", "apiFactory", "userFactory",
 &nbsp;
-		$scope.user = {
-			username: "",
-			password: ""
+	function ($scope, $routeParams, apiFactory, userFactory) {
+&nbsp;
+		$scope.evaluationVariables = {
+			courseID: $routeParams.courseID,
+			semesterID: $routeParams.semesterID,
+			evalID: $routeParams.evalID
 		};
 &nbsp;
-		$scope.submitted = false;
-&nbsp;
-		$scope.errors = {
-			available: false
+		$scope.evaluation = {
+			teachers: null,
+			data: {}
 		};
 &nbsp;
-		$scope.login = function () {
-			$scope.submitted = true;
-			<span class="missing-if-branch" title="else path not taken" >E</span>if ($scope.user.username &amp;&amp; $scope.user.password) {
-				apiFactory.login($scope.user.username, $scope.user.password)
-					.then(function (results) {
+		$scope.answers = {
 &nbsp;
-						console.log("LoginController results", results);
-						<span class="missing-if-branch" title="else path not taken" >E</span>if (results.status === 200) {
-&nbsp;
-							userFactory.setUser(results.data.User);
-							userFactory.setToken(results.data.Token);
-&nbsp;
-							<span class="missing-if-branch" title="else path not taken" >E</span>if (results.data.User.Role === "student") {
-								$location.path("/student/home");
-							}
-&nbsp;
-						}
-					}, function (results) {
-						$scope.errors.available = true;
-					});
-			}
 		};
+&nbsp;
+		$scope.init = function () {
+&nbsp;
+			userFactory.checkValid();
+&nbsp;
+			apiFactory.studentGetEvaluation($scope.evaluationVariables).then(function (results) {
+				$scope.evaluation.data = results.data;
+				console.log("StudentViewEvaluationController evaluation results", results);
+			});
+&nbsp;
+			apiFactory.studentGetTeachers($scope.evaluationVariables).then(function (results) {
+				$scope.evaluation.teachers = results.data;
+				console.log("StudentViewEvaluationController teacher results", results);
+			});
+&nbsp;
+		};
+&nbsp;
+		$scope.init();
 &nbsp;
 	}
 ]);</pre></td></tr>
