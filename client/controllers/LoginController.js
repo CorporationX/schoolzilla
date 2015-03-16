@@ -26,6 +26,8 @@ angular.module("schoolApp").controller("LoginController", ["$scope", "$location"
 
 							if (results.data.User.Role === "student") {
 								$location.path("/student/home");
+							}else if (results.data.User.Role === "admin"){
+								$location.path("/admin/home");
 							}
 
 						}

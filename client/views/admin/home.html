@@ -1,0 +1,35 @@
+<div class="container-fluid">
+
+	<div class="row">
+
+		ADMIN
+
+		<div class="col-md-4">
+			
+			<table class="table table-striped">
+				<tr>
+					<th id="firstheader"> Sniðmát (<span class="italic">Template name</span>):</th>
+					<th id="lastheader"></th>
+				</tr>
+				<tbody ng-repeat="eval in evaluations">
+					<tr class="tablecolor">
+						<td class="col-xs-7">{{eval.CourseName}}</td>
+						<td class="col-xs-4">{{eval.TemplateName}}</td>
+						<td class="col-xs-1">
+							<button class="pull-right btn btn-default btn-sm backgroundcolor" ng-click="openEvaluation(eval.CourseID, eval.Semester, eval.ID)">Meta (<span class="italic">Evaluate</span>)
+							</button>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+
+		</div>
+
+		<div class="col-md-8">
+			
+
+		</div>
+	</div>
+
+
+</div>
