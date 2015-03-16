@@ -68,14 +68,6 @@ describe('apiFactory', function () {
 
 	});
 
-
-	afterEach(function () {
-
-		$httpBackend.verifyNoOutstandingExpectation();
-		$httpBackend.verifyNoOutstandingRequest();
-
-	});
-
 	it("should get the admin evaluations when requested", function () {
 
 		$httpBackend.expect("GET", "http://dispatch.ru.is/demo/api/v1/evaluations").respond(200);
@@ -93,6 +85,26 @@ describe('apiFactory', function () {
 		apiFactory.adminGetTemplates();
 
 		$httpBackend.flush();
+
+	});
+
+	it("should get the student evaluation when requested", function () {
+
+		var templateID = 12;
+
+		$httpBackend.expect("GET", "http://dispatch.ru.is/demo/api/v1/evaluationtemplates/12").respond(200);
+
+		apiFactory.adminGetTemplate(templateID);
+
+		$httpBackend.flush();
+
+	});
+
+
+	afterEach(function () {
+
+		$httpBackend.verifyNoOutstandingExpectation();
+		$httpBackend.verifyNoOutstandingRequest();
 
 	});
 

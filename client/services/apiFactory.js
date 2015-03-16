@@ -17,11 +17,14 @@ angular.module("schoolApp").factory("apiFactory", ["$http", "userFactory", funct
 		studentGetTeachers: function (evaluationVariables) {
 			return $http.get("http://dispatch.ru.is/demo/api/v1/courses/" + evaluationVariables.courseID + "/" + evaluationVariables.semesterID + "/teachers");
 		},
-		adminGetTemplates: function (){
+		adminGetTemplates: function () {
 			return $http.get("http://dispatch.ru.is/demo/api/v1/evaluationtemplates");
 		},
-		adminGetEvaluations: function (){
+		adminGetEvaluations: function () {
 			return $http.get("http://dispatch.ru.is/demo/api/v1/evaluations");
+		},
+		adminGetTemplate: function (templateID) {
+			return $http.get("http://dispatch.ru.is/demo/api/v1/evaluationtemplates/" + templateID);
 		}
 	};
 

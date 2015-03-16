@@ -10,9 +10,8 @@ angular.module("schoolApp").controller("NewTemplateModalController", ["$scope", 
 		};
 
 		$scope.cancel = function () {
-		
+
 			$modalInstance.dismiss("cancel");
-		
 
 		};
 
