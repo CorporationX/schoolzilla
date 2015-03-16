@@ -1,6 +1,6 @@
-angular.module("schoolApp").controller("AdminHomeController", ["$scope", "$location", "apiFactory", "userFactory",
+angular.module("schoolApp").controller("AdminHomeController", ["$scope", "apiFactory", "userFactory",
 
-	function ($scope, $location, apiFactory, userFactory) {
+	function ($scope, apiFactory, userFactory) {
 
 		$scope.init = function () {
 
@@ -10,16 +10,16 @@ angular.module("schoolApp").controller("AdminHomeController", ["$scope", "$locat
 			$scope.evaluations = [];
 
 			apiFactory.adminGetTemplates().then(function (results) {
-				console.log("StudentHomeController templates", results);
+				console.log("AdminHomeController templates", results);
 
 				$scope.templates = results.data;
 			});
 
 			apiFactory.adminGetEvaluations().then(function (results) {
-				console.log("StudentHomeController evaluations", results);
+				console.log("AdminHomeController evaluations", results);
 
 				$scope.evaluations = results.data;
-			});			
+			});
 
 		};
 

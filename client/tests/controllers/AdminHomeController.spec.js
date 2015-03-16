@@ -5,32 +5,46 @@ describe('AdminHomeController', function () {
 	var $q;
 	var $rootScope;
 	var $location;
-	var deferred;
+	var deferred1;
+	var defferred2;
 	var mockApiFactory;
 	var mockUserFactory;
 
 	var evaluationsResult = [{
-		CourseID: "T-427-WEPO",
-		CourseName: "Vefforitun II",
-		Semester: "20151",
-		ID: 34,
-		TemplateName: "Midannarmat"
+		ID: 33,
+		TemplateTitle: "Template Title",
+		StartDate: "2015-03-18T00:00:00",
+		EndDate: "2015-03-18T00:00:00",
+		Status: "open"
 	}, {
-		CourseID: "T-622-ARTI",
-		CourseName: "Gervigreind",
-		Semester: "20151",
-		ID: 55,
-		TemplateName: "Midannarmat"
+		ID: 45,
+		TemplateTitle: "Template Title",
+		StartDate: "2015-03-14T02:03:00",
+		EndDate: "2015-03-18T00:00:00",
+		Status: "closed"
+	}];
+
+	var templateResult = [{
+		ID: 5,
+		Title: "titill",
+	}, {
+		ID: 5,
+		Title: "titill"
 	}];
 
 	beforeEach(module("schoolApp"));
 
 	beforeEach(function () {
 
+
 		mockApiFactory = {
-			studentGetEvaluations: function () {
-				deferred = $q.defer();
-				return deferred.promise;
+			adminGetTemplates: function () {
+				deferred1 = $q.defer();
+				return deferred1.promise;
+			},
+			adminGetEvaluations: function () {
+				deferred2 = $q.defer();
+				return deferred2.promise;
 			}
 		};
 
@@ -48,15 +62,13 @@ describe('AdminHomeController', function () {
 
 	});
 
-	beforeEach(inject(function (_$q_, _$controller_, _$rootScope_, _$location_) {
+	beforeEach(inject(function (_$q_, _$controller_, _$rootScope_) {
 		$rootScope = _$rootScope_;
 		$scope = $rootScope.$new();
 
-		$location = _$location_;
-
 		$q = _$q_;
 
-		$controller = _$controller_("StudentHomeController", {
+		$controller = _$controller_("AdminHomeController", {
 			$scope: $scope,
 			apiFactory: mockApiFactory,
 			userFactory: mockUserFactory
@@ -69,7 +81,11 @@ describe('AdminHomeController', function () {
 
 		$scope.init();
 
-		deferred.resolve({
+		deferred1.resolve({
+			data: []
+		});
+
+		deferred2.resolve({
 			data: []
 		});
 
@@ -78,33 +94,36 @@ describe('AdminHomeController', function () {
 		expect(mockUserFactory.checkValid).toHaveBeenCalled();
 	});
 
-	it("should populate evaluations with evaluations after initialization", function () {
+	it("should populate evaluationsResults with evaluations after initialization", function () {
 
 		expect($scope.evaluations.length).toEqual(0);
 
 		$scope.init();
 
-		deferred.resolve({
+		deferred2.resolve({
 			data: evaluationsResult
 		});
 
 		$rootScope.$apply();
 
-		expect($scope.evaluations.length).toEqual(2);
+		expect($scope.evaluations).toEqual(evaluationsResult);
 
 	});
 
-	it("should redirect when an evaluation is opened", function () {
 
-		spyOn($location, "path").and.callThrough();
+	it("should populate templateResults with templates after initialization", function () {
 
-		expect($scope.evaluations.length).toEqual(0);
+		expect($scope.templates.length).toEqual(0);
 
-		$scope.openEvaluation("vef2", "20151", 33);
+		$scope.init();
+
+		deferred1.resolve({
+			data: templateResult
+		});
 
 		$rootScope.$apply();
 
-		expect($location.path).toHaveBeenCalledWith("/student/course/vef2/20151/evaluation/33");
+		expect($scope.templates).toEqual(templateResult);
 
 	});
 

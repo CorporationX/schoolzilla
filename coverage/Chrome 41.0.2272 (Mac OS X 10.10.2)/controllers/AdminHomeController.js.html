@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <title>Code coverage report for controllers/StudentHomeController.js</title>
+    <title>Code coverage report for controllers/AdminHomeController.js</title>
     <meta charset="utf-8">
 
     <link rel="stylesheet" href="../prettify.css">
@@ -15,10 +15,10 @@
 </head>
 <body>
 <div class="header high">
-    <h1>Code coverage report for <span class="entity">controllers/StudentHomeController.js</span></h1>
+    <h1>Code coverage report for <span class="entity">controllers/AdminHomeController.js</span></h1>
     <h2>
         
-        Statements: <span class="metric">100% <small>(10 / 10)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Statements: <span class="metric">100% <small>(12 / 12)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         
         
         Branches: <span class="metric">100% <small>(0 / 0)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
@@ -27,11 +27,11 @@
         Functions: <span class="metric">100% <small>(4 / 4)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         
         
-        Lines: <span class="metric">100% <small>(10 / 10)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">100% <small>(12 / 12)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         
         Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
     </h2>
-    <div class="path"><a href="../index.html">All files</a> &#187; <a href="index.html">controllers/</a> &#187; StudentHomeController.js</div>
+    <div class="path"><a href="../index.html">All files</a> &#187; <a href="index.html">controllers/</a> &#187; AdminHomeController.js</div>
 </div>
 <div class="body">
 <pre><table class="coverage">
@@ -58,47 +58,62 @@
 21
 22
 23
-24</td><td class="line-coverage"><span class="cline-any cline-yes">1</span>
+24
+25
+26
+27
+28
+29</td><td class="line-coverage"><span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">3</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3</span>
-<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">6</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6</span>
+<span class="cline-any cline-yes">6</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3</span>
-<span class="cline-any cline-yes">5</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-yes">6</span>
 <span class="cline-any cline-yes">2</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">3</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">angular.module("schoolApp").controller("StudentHomeController", ["$scope", "$location", "apiFactory", "userFactory",
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">angular.module("schoolApp").controller("AdminHomeController", ["$scope", "apiFactory", "userFactory",
 &nbsp;
-	function ($scope, $location, apiFactory, userFactory) {
-&nbsp;
-		$scope.evaluations = [];
-&nbsp;
-		$scope.openEvaluation = function (courseID, semesterID, evalID) {
-			$location.path("/student/course/" + courseID + "/" + semesterID + "/evaluation/" + evalID);
-		};
+	function ($scope, apiFactory, userFactory) {
 &nbsp;
 		$scope.init = function () {
+&nbsp;
 			userFactory.checkValid();
 &nbsp;
-			apiFactory.studentGetEvaluations().then(function (results) {
-				console.log("StudentHomeController results", results);
+			$scope.templates = [];
+			$scope.evaluations = [];
+&nbsp;
+			apiFactory.adminGetTemplates().then(function (results) {
+				console.log("AdminHomeController templates", results);
+&nbsp;
+				$scope.templates = results.data;
+			});
+&nbsp;
+			apiFactory.adminGetEvaluations().then(function (results) {
+				console.log("AdminHomeController evaluations", results);
 &nbsp;
 				$scope.evaluations = results.data;
 			});
+&nbsp;
 		};
 &nbsp;
 		$scope.init();
