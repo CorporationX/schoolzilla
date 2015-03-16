@@ -4,43 +4,81 @@ describe('evaluationQuestion', function () {
 	var $rootScope;
 	var element;
 
-	var question;
-	var answers;
-	var teacher;
+	describe('courseQuestions', function (){
 
-	beforeEach(module("schoolApp"));
+		beforeEach(module("schoolApp"));
 
-	beforeEach(inject(function (_$controller_, _$rootScope_, _$compile_) {
-		$rootScope = _$rootScope_;
-		$scope = $rootScope.$new();
+		beforeEach(inject(function (_$controller_, _$rootScope_, _$compile_, _$templateCache_) {
+			$rootScope = _$rootScope_;
+			$scope = $rootScope.$new();
 
-		var template = '<evaluation-question answers="answers" teacher="teacher" ng-model="question"></evaluation-question>';
+			_$templateCache_.put("/client/views/templates/evaluationQuestion.html", "<div></div>");
 
-		element = _$compile_(template)($scope);
+			$scope.answers = {};
+			$scope.teacher = "";
+			$scope.question = {
+				ID: 12
+			};
 
-	}));
 
-	it("should set elements when courseQuestion", function () {
-		// teacher = "";
-		// question = "courseQuestion";
-		// $scope.ID = $scope.question.ID;
-		// $scope.answers[$scope.ID] = {
-		// 	QuestionID: $scope.question.ID
-		// };
+			var template = '<evaluation-question answers="answers" teacher="teacher" ng-model="question"></evaluation-question>';
 
-		// expect(teacher).toEqual("");
-		// expect(question).toEqual("courseQuestion");
-		// expect(QuestionID).toEqual($scope.question.ID);
+			element = _$compile_(template)($scope);
+
+		}));
+
+		it("should set answer to include a QuestionID key", function (){
+
+			$rootScope.$apply();
+
+			expect($scope.answers).toEqual({
+				12: {
+					QuestionID: 12
+				}
+			});
+
+		});
 
 	});
 
-	it("should set elements when teacherQuestion", function () {
-		teacher = 1234567890;
+
+	describe('teacherQuestions', function (){
+
+		beforeEach(module("schoolApp"));
+
+		beforeEach(inject(function (_$controller_, _$rootScope_, _$compile_, _$templateCache_) {
+			$rootScope = _$rootScope_;
+			$scope = $rootScope.$new();
+
+			_$templateCache_.put("/client/views/templates/evaluationQuestion.html", "<div></div>");
+
+			$scope.answers = {};
+			$scope.teacher = "1234567890";
+
+			$scope.question = {
+				ID: 12
+			};
 
 
-		expect(teacher).toEqual(1234567890);
+			var template = '<evaluation-question answers="answers" teacher="teacher" ng-model="question"></evaluation-question>';
+
+			element = _$compile_(template)($scope);
+
+		}));
+
+		it("should set answer to include a QuestionID key and a TeacherSSN key", function (){
+
+			$rootScope.$apply();
+
+			expect($scope.answers).toEqual({
+				"12-1234567890": {
+					QuestionID: 12,
+					TeacherSSN: "1234567890"
+				}
+			});
+
+		});
+
 	});
-
-
 
 });

@@ -17,6 +17,24 @@ angular.module("schoolApp").controller("StudentViewEvaluationController", ["$sco
 
 		};
 
+		$scope.evaluationAnswers = [];
+
+		$scope.sendEvaluation = function (){
+				
+			for (var key in $scope.answers){
+
+				if ($scope.answers[key].value){
+
+					$scope.evaluationAnswers.push($scope.answers[key]);
+
+				}
+			
+			}
+			
+			console.log("sending ", $scope.evaluationAnswers);
+
+		};
+
 		$scope.init = function () {
 
 			userFactory.checkValid();

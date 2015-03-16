@@ -1,4 +1,4 @@
-describe('StudentHomeController', function () {
+describe('StudentViewEvaluationController', function () {
 
 	var $controller;
 	var $scope;
@@ -112,6 +112,24 @@ describe('StudentHomeController', function () {
 		$rootScope.$apply();
 
 		expect($scope.evaluation.data).toEqual(evaluationResults);
+
+	});
+
+	it("should only post questions that have answers", function (){
+
+		$scope.answers = {
+			1: {
+				QuestionID: 12,
+				value: "asdf"
+			},
+			2: {
+				QuestionID: 13
+			}	
+		};
+
+		$scope.sendEvaluation();
+
+		expect($scope.evaluationAnswers).toEqual([{QuestionID: 12, value: "asdf"}]);
 
 	});
 

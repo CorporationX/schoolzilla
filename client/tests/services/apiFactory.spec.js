@@ -76,4 +76,24 @@ describe('apiFactory', function () {
 
 	});
 
+	it("should get the admin evaluations when requested", function () {
+
+		$httpBackend.expect("GET", "http://dispatch.ru.is/demo/api/v1/evaluations").respond(200);
+
+		apiFactory.adminGetEvaluations();
+
+		$httpBackend.flush();
+
+	});
+
+	it("should get the admin templates when requested", function () {
+
+		$httpBackend.expect("GET", "http://dispatch.ru.is/demo/api/v1/evaluationtemplates").respond(200);
+
+		apiFactory.adminGetTemplates();
+
+		$httpBackend.flush();
+
+	});
+
 });

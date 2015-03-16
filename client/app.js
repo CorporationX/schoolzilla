@@ -12,6 +12,9 @@ angular.module("schoolApp", ["ngRoute", "ui.bootstrap"])
 		}).when("/student/course/:courseID/:semesterID/evaluation/:evalID", {
 			templateUrl: "client/views/student/viewEvaluation.html",
 			controller: "StudentViewEvaluationController"
+		}).when("/admin/home", {
+			templateUrl: "/client/views/admin/home.html",
+			controller: "AdminHomeController"
 		})
 		.otherwise({
 			redirectTo: "/login"

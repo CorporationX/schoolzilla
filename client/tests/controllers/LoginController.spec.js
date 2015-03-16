@@ -15,6 +15,12 @@ describe('LoginController', function () {
 		Username: "kristjanj11"
 	};
 
+	var adminObject = {
+		FullName: "Admin",
+		Role: "admin",
+		Username: "admin"
+	};
+
 	beforeEach(module("schoolApp"));
 
 	beforeEach(function () {
@@ -136,6 +142,30 @@ describe('LoginController', function () {
 		$rootScope.$apply();
 
 		expect($scope.errors.available).toEqual(true);
+	});
+
+	it("should redirect on a successful login as a admin", function () {
+
+		spyOn($location, "path").and.callThrough();
+
+		$scope.user = {
+			username: "admin",
+			password: 123456
+		};
+
+		$scope.login();
+
+		deferred.resolve({
+			data: {
+				User: adminObject,
+				Token: "1234"
+			},
+			status: 200
+		});
+
+		$rootScope.$apply();
+
+		expect($location.path).toHaveBeenCalled();
 	});
 
 });
