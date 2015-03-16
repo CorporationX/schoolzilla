@@ -1,6 +1,21 @@
-angular.module("schoolApp").controller("AdminHomeController", ["$scope", "apiFactory", "userFactory",
+angular.module("schoolApp").controller("AdminHomeController", ["$scope", "$modal", "apiFactory", "userFactory",
 
-	function ($scope, apiFactory, userFactory) {
+	function ($scope, $modal, apiFactory, userFactory) {
+
+		$scope.createTemplate = function (){
+
+			var modalInstance = $modal.open({
+				templateUrl: "/client/views/modals/newTemplateModal.html",
+				controller: "NewTemplateModalController"
+			});
+
+			modalInstance.result.then(function (selectedItem){
+
+
+
+			});
+
+		};
 
 		$scope.init = function () {
 
