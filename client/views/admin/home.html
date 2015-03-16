@@ -2,31 +2,72 @@
 
 	<div class="row">
 
-		ADMIN
+		<h1 class="text-center">Admin Home</h1>
 
 		<div class="col-md-4">
+
+			<h2 class="text-center">Templates</h2>
 			
-			<table class="table table-striped">
-				<tr>
-					<th id="firstheader"> Sniðmát (<span class="italic">Template name</span>):</th>
-					<th id="lastheader"></th>
-				</tr>
-				<tbody ng-repeat="eval in evaluations">
-					<tr class="tablecolor">
-						<td class="col-xs-7">{{eval.CourseName}}</td>
-						<td class="col-xs-4">{{eval.TemplateName}}</td>
-						<td class="col-xs-1">
-							<button class="pull-right btn btn-default btn-sm backgroundcolor" ng-click="openEvaluation(eval.CourseID, eval.Semester, eval.ID)">Meta (<span class="italic">Evaluate</span>)
-							</button>
-						</td>
+			<div class="mainContent border-fix">
+				
+				<i class="fa fa-plus fa-2x pull-right"></i>
+				
+				<table class="table table-striped">
+					<tr>
+						<th class="firstheader"> Sniðmát (<span class="italic">Template name</span>):</th>
+						<th class="lastheader"></th>
 					</tr>
-				</tbody>
-			</table>
+					<tbody ng-repeat="temp in templates">
+						<tr class="tablecolor">
+							<td class="col-xs-10">{{temp.Title}}</td>
+							<td class="col-xs-2">
+								<button class="pull-right btn btn-default btn-sm backgroundcolor" >Skoða (<span class="italic">View</span>)
+								</button>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
 
 		</div>
 
 		<div class="col-md-8">
-			
+
+			<h2 class="text-center">Evaluations</h2>
+
+			<div class="mainContent border-fix">
+
+				<i class="fa fa-plus fa-2x pull-right"></i>
+				
+				<table class="table table-striped">
+					<tr>
+						<th class="firstheader"> Titill (<span class="italic">Title</span>)</th>
+						<th>Byrjaði (<span class="italic">Starts</span>)</th>
+						<th>Endar (<span class="italic">Ends</span>)</th>
+						<th>Staða (<span class="italic">Status</span>)</th>
+						<th class="lastheader"></th>
+					</tr>
+					<tbody ng-repeat="eval in evaluations">
+						<tr class="tablecolor">
+							<td class="col-xs-4">{{eval.TemplateTitle}}</td>
+							<td class="col-xs-2">
+								{{eval.StartDate | date:"mediumDate"}} <br>
+								{{eval.StartDate | date:"shortTime"}}
+							</td>
+							<td class="col-xs-2">
+								{{eval.EndDate | date:"mediumDate"}} <br>
+								{{eval.EndDate | date:"shortTime"}}
+							</td>
+							<td class="col-xs-2">{{eval.Status}}</td>
+							<td class="col-xs-2">
+								<button class="pull-right btn btn-default btn-sm backgroundcolor" >Skoða Niðurstöður <br>
+								(<span class="italic">View Results</span>)
+								</button>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
 
 		</div>
 	</div>
