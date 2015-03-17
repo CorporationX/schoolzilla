@@ -16,6 +16,10 @@ angular.module("schoolApp", ["ngRoute", "ui.bootstrap"])
 			templateUrl: "/client/views/admin/home.html",
 			controller: "AdminHomeController"
 		})
+		.when("/admin/newtemplate", {
+			templateUrl: "/client/views/admin/newTemplate.html",
+			controller: "AdminNewTemplateController"
+		})
 		.otherwise({
 			redirectTo: "/login"
 		});

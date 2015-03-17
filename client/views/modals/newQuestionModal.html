@@ -1,0 +1,107 @@
+<div class="modal-header">
+	<h3 class="modal-title">Create a Question</h3>
+
+</div>
+
+<div class="modal-body">
+	
+	<div class="container-fluid">
+		<div class="row">
+			<div class="line">
+				<div class="col-xs-3">
+					Flokkur: <br>
+					(<span class="italic">Category</span>)
+				</div>
+				<div class="col-xs-9">
+					<select ng-model="question.category">
+						<option value="Course question">
+							Áfanga spurning <br>
+							(<span class="italic">Course question</span>)
+						</option>
+						<option value="Teacher question">
+							Kennara spurning <br>
+							(<span class="italic">Teacher question</span>)
+						</option>
+					</select>
+				</div>
+			</div>
+
+			<div class="line">
+				<div class="col-xs-3">
+					Tegund: <br>
+					(<span class="italic">Type</span>)
+				</div>
+				<div class="col-xs-9">
+					<select ng-model="question.type">
+						<option value="text">
+							Texti <br>
+							(<span class="italic">Text</span>)
+						</option>
+						<option value="single">
+							Einn valmöguleiki <br>
+							(<span class="italic">Single</span>)
+						</option>
+					</select>
+				</div>
+			</div>
+
+			<div class="line">
+				<div class="col-xs-3">
+					Spurning: <br>
+				</div>
+				<div class="col-xs-9">
+					<input type="text" ng-model="question.Text">
+				</div>
+			</div>
+
+			<div class="line">
+				<div class="col-xs-3">
+					Question: <br>
+				</div>
+				<div class="col-xs-9">
+					<input type="text" ng-model="question.TextEN">
+				</div>
+			</div>
+
+			<div ng-show="question.type === 'single'">
+				
+				<div class="line" ng-repeat="option in question.options track by $index">
+
+					<div>
+						<div class="col-xs-3">
+							Valmöguleiki {{$index + 1}}: <br>
+						</div>
+						<div class="col-xs-9">
+							<input type="text" ng-model="question.options[$index].Text">
+						</div>
+					
+					</div>
+
+					<div>
+						<div class="col-xs-3">
+							Option {{$index + 1}}: <br>
+						</div>
+						<div class="col-xs-9">
+							<input type="text" ng-model="question.options[$index].TextEN">
+						</div>
+					</div>
+
+				</div>
+
+			</div>
+
+			<button class="btn btn-default pull-right" ng-click="addOption()">
+				Bæta við valmöguleika <br>
+				(<span class="italic">Add option</span>)
+			</button>
+
+		</div>
+	</div>
+
+</div>
+
+<div class="modal-footer">
+
+	<button class="btn btn-primary" ng-click="ok()">Ok</button>
+	<button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+</div>
