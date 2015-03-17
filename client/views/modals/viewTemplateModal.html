@@ -7,21 +7,23 @@
 
 <div class="container-fluid">
 	<div class="row">
-		<div class="mainContent viewTemplateMain">
+		<div class="mainContent">
 		
-			<div ng-show="currentTemplate">
+			<div class="viewTemplateMain"ng-show="currentTemplate">
 
 				<div class="text-center">
-					<h3><span class="bold">Lýsing:</span> {{currentTemplate.IntroText}}</h3>
+					<h4>Lýsing: {{currentTemplate.IntroText}}</h4>
 				</div>
 				<div class="text-center italic">
-					<h3><span class="bold">Description: </span>{{currentTemplate.IntroTextEN}}</h3>
+					<h4>Description: {{currentTemplate.IntroTextEN}}</h4>
 				</div>
 					
 				<div>
-					<h3>
+					<div>
+					<h3 class="mainQuestionType">
 						Áfangaspurningar (<span class="italic">Course Questions</span>)
 					</h3>
+					</div>
 
 					<div ng-repeat="courseQ in currentTemplate.CourseQuestions">
 						<div>
@@ -41,7 +43,7 @@
 
 				</div>
 				<div>
-					<h3>
+					<h3 class="mainQuestionType">
 						Kennaraspurningar (<span class="italic">Teacher Questions</span>)	
 					</h3>
 
