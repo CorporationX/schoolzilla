@@ -1,6 +1,6 @@
 
 <div class="modal-header">
-	<h3 class="modal-title">{{currentTemplate.data.Title}}  ({{currentTemplate.data.TitleEN}})</h3>
+	<h3 class="modal-title">{{currentTemplate.Title}}  ({{currentTemplate.TitleEN}})</h3>
 </div>
 
 <div class="modal-body">
@@ -9,46 +9,58 @@
 	<div class="row">
 		<div class="mainContent">
 		
-			<div ng-show="currentTemplate.data">
+			<div ng-show="currentTemplate">
 
 				<div class="text-center">
-					Lýsing: {{currentTemplate.data.IntroText}}
+					Lýsing: {{currentTemplate.IntroText}}
 				</div>
 				<div class="text-center italic">
-					Description: {{currentTemplate.data.IntroTextEN}}
+					Description: {{currentTemplate.IntroTextEN}}
 				</div>
 					
-				<h3>
-					Áfangaspurningar (<span class="italic">Course Questions</span>)
-				</h3>
-
 				<div>
-					<!-- 	<evaluation-question ng-repeat="courseQ in currentTemplate.data.CourseQuestions" answers="answers" ng-model="courseQ" teacher="">
-						</evaluation-question> -->
-				</div>
+					<h3>
+						Áfangaspurningar (<span class="italic">Course Questions</span>)
+					</h3>
 
-				<h3>
-					Kennaraspurningar (<span class="italic">Teacher Questions</span>)	
-				</h3>
+					<div ng-repeat="courseQ in currentTemplate.CourseQuestions">
+						<div>
+							<h4>{{courseQ.Text}} (<span class="italic">{{courseQ.TextEN}}</span>)</h4>
 
-			<!-- 	<div>
-					Evaluation Questions for Teacher:
+							<div ng-show="courseQ.Type === 'text'">
+								<textarea class="textbox">
+								</textarea>
+							</div>
 
-					<div>
-						<evaluation-question ng-repeat="teacherQ in currentTemplate.data.TeacherQuestions" answers="answers" ng-model="teacherQ" teacher="teacher.SSN">
-						</evaluation-question>			
+							<div ng-repeat="answer in courseQ.Answers"ng-show="courseQ.Type === 'single'">
+								<input name="courseAnswergroup" type="radio"> {{answer.Text}} (<span class="italic">{{answer.TextEN}}</span>)
+							</div>
+						</div>
+
 					</div>
-				</div> -->
 
-<!-- 			 	<accordion close-others="oneAtATime">
-	    			<accordion-group ng-repeat="teacher in evaluation.teachers" is-open="status.open">
-	        		<accordion-heading>
-	           		 Spurningar fyrir (<span class="italic">Questions for</span>): {{teacher.FullName}} <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
-	        		</accordion-heading>
-					<evaluation-question ng-repeat="teacherQ in evaluation.data.TeacherQuestions" answers="answers" ng-model="teacherQ" teacher="teacher.SSN">
-					</evaluation-question>	    		
-					</accordion-group>
-	  			</accordion> -->	
+				</div>
+				<div>
+					<h3>
+						Kennaraspurningar (<span class="italic">Teacher Questions</span>)	
+					</h3>
+
+					<div ng-repeat="teacherQ in currentTemplate.TeacherQuestions">
+						<div>
+							<h4>{{teacherQ.Text}} (<span class="italic">{{teacherQ.TextEN}}</span>)</h4>
+
+							<div ng-show="teacherQ.Type === 'text'">
+								<textarea class="textbox">
+								</textarea>
+							</div>
+
+							<div ng-repeat="answer in teacherQ.Answers"ng-show="teacherQ.Type === 'single'">
+								<input name="teacherAnswergroup"  type="radio"> {{answer.Text}} (<span class="italic">{{answer.TextEN}}</span>)
+							</div>
+						</div>
+
+					</div>
+				</div>
 
 			</div>
 		</div>
