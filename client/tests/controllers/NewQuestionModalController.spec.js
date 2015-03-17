@@ -48,6 +48,8 @@ describe('NewQuestionModalController', function () {
 
 	it("should add an item to the options when clicked", function () {
 
+		$scope.question.type = "single";
+
 		expect($scope.question.options.length).toEqual(1);
 
 		$scope.addOption();
@@ -111,6 +113,18 @@ describe('NewQuestionModalController', function () {
 			Text: "Hvernig eru fyrirlestrarnir",
 			TextEN: "How is the lectures"
 		});
+
+	});
+
+	it("should not add an option if the type of question is set to text", function () {
+
+		expect($scope.question.options.length).toEqual(1);
+
+		$scope.addOption();
+
+		$rootScope.$apply();
+
+		expect($scope.question.options.length).toEqual(1);
 
 	});
 

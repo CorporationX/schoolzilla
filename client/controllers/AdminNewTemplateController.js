@@ -7,6 +7,10 @@ angular.module("schoolApp").controller("AdminNewTemplateController", ["$scope", 
 			TeacherQuestions: []
 		};
 
+		$scope.errors = {
+			template: false
+		};
+
 		$scope.newQuestion = function () {
 
 			$scope.modalInstance = $modal.open({
@@ -43,8 +47,17 @@ angular.module("schoolApp").controller("AdminNewTemplateController", ["$scope", 
 
 		$scope.saveTemplate = function () {
 
-			// console.log("saving template", $scope.template);
+			if (!$scope.template.CourseQuestions.length && !$scope.template.TeacherQuestions.length) {
+				$scope.errors.template = true;
+				return;
+			}
 
+			console.log("saving template", $scope.template);
+
+		};
+
+		$scope.cancel = function () {
+			$location.path("/admin/home");
 		};
 
 		$scope.init = function () {

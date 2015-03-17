@@ -21,6 +21,10 @@ angular.module("schoolApp").controller("NewQuestionModalController", ["$scope", 
 
 		$scope.addOption = function () {
 
+			if ($scope.question.type === "text") {
+				return;
+			}
+
 			$scope.question.options.push({
 				Text: "",
 				TextEN: "",
