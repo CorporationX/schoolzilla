@@ -1,9 +1,60 @@
+
 <div class="modal-header">
-	<h3 class="modal-title">View a template</h3>
+	<h3 class="modal-title">{{currentTemplate.data.Title}}  ({{currentTemplate.data.TitleEN}})</h3>
 </div>
 
 <div class="modal-body">
-	<h1>DERP</h1>
+
+<div class="container-fluid">
+	<div class="row">
+		<div class="mainContent">
+		
+			<div ng-show="currentTemplate.data">
+
+				<div class="text-center">
+					Lýsing: {{currentTemplate.data.IntroText}}
+				</div>
+				<div class="text-center italic">
+					Description: {{currentTemplate.data.IntroTextEN}}
+				</div>
+					
+				<h3>
+					Áfangaspurningar (<span class="italic">Course Questions</span>)
+				</h3>
+
+				<div>
+					<!-- 	<evaluation-question ng-repeat="courseQ in currentTemplate.data.CourseQuestions" answers="answers" ng-model="courseQ" teacher="">
+						</evaluation-question> -->
+				</div>
+
+				<h3>
+					Kennaraspurningar (<span class="italic">Teacher Questions</span>)	
+				</h3>
+
+			<!-- 	<div>
+					Evaluation Questions for Teacher:
+
+					<div>
+						<evaluation-question ng-repeat="teacherQ in currentTemplate.data.TeacherQuestions" answers="answers" ng-model="teacherQ" teacher="teacher.SSN">
+						</evaluation-question>			
+					</div>
+				</div> -->
+
+<!-- 			 	<accordion close-others="oneAtATime">
+	    			<accordion-group ng-repeat="teacher in evaluation.teachers" is-open="status.open">
+	        		<accordion-heading>
+	           		 Spurningar fyrir (<span class="italic">Questions for</span>): {{teacher.FullName}} <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
+	        		</accordion-heading>
+					<evaluation-question ng-repeat="teacherQ in evaluation.data.TeacherQuestions" answers="answers" ng-model="teacherQ" teacher="teacher.SSN">
+					</evaluation-question>	    		
+					</accordion-group>
+	  			</accordion> -->	
+
+			</div>
+		</div>
+	</div>
+
+</div> 
 </div>
 
 <div class="modal-footer">

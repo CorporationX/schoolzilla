@@ -8,5 +8,6 @@ angular.module("schoolApp").controller("ViewTemplateModalController", ["$scope",
 		};
 
 		$scope.currentTemplate = currentTemplate;
+		console.log(currentTemplate.data);
 	}
 ]);
