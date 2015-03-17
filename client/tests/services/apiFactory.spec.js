@@ -121,6 +121,19 @@ describe('apiFactory', function () {
 
 	});
 
+
+	it("should get the evaluation", function () {
+
+		var templateID = 12;
+
+		$httpBackend.expect("GET", "http://dispatch.ru.is/demo/api/v1/evaluations/12").respond(200);
+
+		apiFactory.adminGetEvaluation(templateID);
+
+		$httpBackend.flush();
+
+	});
+
 	afterEach(function () {
 
 		$httpBackend.verifyNoOutstandingExpectation();

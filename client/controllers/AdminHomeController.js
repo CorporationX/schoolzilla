@@ -7,10 +7,31 @@ angular.module("schoolApp").controller("AdminHomeController", ["$scope", "$modal
 			$location.path("/admin/newtemplate");
 
 		};
+
 		$scope.viewTemplate = function (templateID) {
 
 			apiFactory.adminGetTemplate(templateID).then(function (results) {
-				console.log("results: ", results);
+				console.log("viewTemplate: ", results);
+
+				var modalInstance = $modal.open({
+					templateUrl: "/client/views/modals/viewTemplateModal.html",
+					controller: "ViewTemplateModalController",
+					resolve: {
+						currentTemplate: function () {
+							return results.data;
+						}
+					}
+				});
+
+			});
+
+		};
+
+		$scope.viewResult = function (evalID) {
+
+			apiFactory.adminGetEvaluation(evalID).then(function (results) {
+				console.log("viewResults: ", results);
+
 				var modalInstance = $modal.open({
 					templateUrl: "/client/views/modals/viewTemplateModal.html",
 					controller: "ViewTemplateModalController",

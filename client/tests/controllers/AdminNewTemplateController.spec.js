@@ -172,6 +172,51 @@ describe('AdminNewTemplateController', function () {
 
 	});
 
+	it("should save a template if CourseQuestions or TeacherQuestions is not empty", function () {
 
+		expect($scope.errors.template).toEqual(false);
+
+		$scope.template.CourseQuestions = [];
+		$scope.template.TeacherQuestions = [{
+			Text: "hvernig er",
+			TextEN: "how is",
+			ImageURL: "",
+			Type: "text"
+		}];
+
+		$scope.saveTemplate();
+
+		$rootScope.$apply();
+
+		expect($scope.errors.template).toEqual(false);
+
+	});
+
+	it("should not save a template if both CourseQuestions or TeacherQuestions is empty", function () {
+
+		expect($scope.errors.template).toEqual(false);
+
+		$scope.template.CourseQuestions = [];
+		$scope.template.TeacherQuestions = [];
+
+		$scope.saveTemplate();
+
+		$rootScope.$apply();
+
+		expect($scope.errors.template).toEqual(true);
+
+	});
+
+	it("should cancel the modal", function () {
+
+		spyOn($location, "path");
+
+		$scope.cancel();
+
+		$rootScope.$apply();
+
+		expect($location.path).toHaveBeenCalledWith("/admin/home");
+
+	});
 
 });
