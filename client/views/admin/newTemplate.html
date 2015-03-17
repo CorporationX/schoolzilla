@@ -4,12 +4,14 @@
 
 		<h1 class="text-center">Nýtt sniðmát (<span class="italic">New template</span>)</h1>
 
+		<form novalidate name="templateBase">
+
 		<div class="inputspacing">
 			<span class="col-xs-3">
 				Sniðmáts titill:
 			</span> 
 			<span class="col-xs-9">
-				<input ng-model="template.Title" type="text">	
+				<input name="title" required="required" ng-model="template.Title" type="text">	
 			</span>	
 		</div>
 
@@ -18,7 +20,7 @@
 				Template title:
 			</span> 
 			<span class="col-xs-9">
-				<input ng-model="template.TitleEN" type="text">	
+				<input name="titleEN" required="required" ng-model="template.TitleEN" type="text">	
 			</span>	
 		</div>
 
@@ -27,7 +29,7 @@
 				Inngangstexti:
 			</span> 
 			<span class="col-xs-9">
-				<textarea ng-model="template.IntroText" class="textbox">
+				<textarea name="introText" required="required" ng-model="template.IntroText" class="textbox">
 					
 				</textarea>
 			</span>	
@@ -38,11 +40,13 @@
 				Introduction:
 			</span> 
 			<span class="col-xs-9">
-				<textarea ng-model="template.IntroTextEN" class="textbox">
-					
+				<textarea name="introTextEN" required="required" ng-model="template.IntroTextEN" class="textbox">
+
 				</textarea>	
 			</span>	
 		</div>
+
+		</form>
 
 		<div class="newQuestions">
 
@@ -95,12 +99,14 @@
 				</div>
 				
 			</div>
-			
+			<div class="row">
+			<div class="col-sm-3 pull-right">
 			<button class="btn btn-default pull-right" ng-click="newQuestion()">
 				Bæta við spurning <br> (<span class="italic">Add question</span>)
 			</button>
+			</div>
 
-			<div class="line">
+			<div class="line col-sm-3">
 				<button class="btn btn-success" ng-click="saveTemplate()">
 					Ok
 				</button>
@@ -109,7 +115,15 @@
 				</button>
 			</div>
 
+			<div class="errorBlock col-sm-6" ng-show="saved.template">	
+					<p class="errorMessage" ng-show="templateBase.title.$error.required">-Sniðmáts titil vantar</p>
+					<p class="errorMessage" ng-show="templateBase.titleEN.$error.required">-Template title is missing</p>
+					<p class="errorMessage" ng-show="templateBase.introText.$error.required">-Inngangstexta vantar</p>
+					<p class="errorMessage" ng-show="templateBase.introTextEN.$error.required">-Introduction is missing</p>
+					<p class="errorMessage" ng-show="errors.template">-Þú getur ekki vistað sniðmát ef engin spurning hefur verið vistuð <br><span class="italic">-You can't save a template if no questions have been saved</span></p>
+			</div>
 
+			</div>
 		</div>
 
 	</div>

@@ -11,6 +11,11 @@ angular.module("schoolApp").controller("AdminNewTemplateController", ["$scope", 
 			template: false
 		};
 
+		$scope.saved = {
+			template: false,
+			question: false
+		};
+
 		$scope.newQuestion = function () {
 
 			$scope.modalInstance = $modal.open({
@@ -40,12 +45,14 @@ angular.module("schoolApp").controller("AdminNewTemplateController", ["$scope", 
 					$scope.template.TeacherQuestions.push(questionObject);
 
 				}
+				$scope.errors.template = false;
 
 			});
 
 		};
 
 		$scope.saveTemplate = function () {
+			$scope.saved.template = true;
 
 			if (!$scope.template.CourseQuestions.length && !$scope.template.TeacherQuestions.length) {
 				$scope.errors.template = true;
