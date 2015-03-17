@@ -1,6 +1,6 @@
-angular.module("schoolApp").controller("StudentViewEvaluationController", ["$scope", "$routeParams", "apiFactory", "userFactory",
+angular.module("schoolApp").controller("StudentViewEvaluationController", ["$scope", "$routeParams", "apiFactory", "userFactory", "$location",
 
-	function ($scope, $routeParams, apiFactory, userFactory) {
+	function ($scope, $routeParams, apiFactory, userFactory, $location) {
 
 		$scope.evaluationVariables = {
 			courseID: $routeParams.courseID,
@@ -21,6 +21,8 @@ angular.module("schoolApp").controller("StudentViewEvaluationController", ["$sco
 
 		$scope.sendEvaluation = function () {
 
+			$scope.evaluationAnswers = [];
+
 			for (var key in $scope.answers) {
 
 				if ($scope.answers[key].value) {
@@ -31,7 +33,11 @@ angular.module("schoolApp").controller("StudentViewEvaluationController", ["$sco
 
 			}
 
-			console.log("sending ", $scope.evaluationAnswers);
+			console.log("try sending", $scope.evaluationAnswers, "with properties", $scope.evaluationVariables);
+
+			apiFactory.studentPostEvaluation($scope.evaluationVariables, $scope.evaluationAnswers).then(function (results) {
+				$location.path("/student/home");
+			});
 
 		};
 

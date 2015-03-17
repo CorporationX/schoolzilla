@@ -31,15 +31,6 @@
 					Kennaraspurningar (<span class="italic">Teacher Questions</span>)	
 				</h3>
 
-				<!-- <div ng-repeat="teacher in evaluation.teachers">
-					Evaluation Questions for {{teacher.FullName}}
-
-					<div>
-						<evaluation-question ng-repeat="teacherQ in evaluation.data.TeacherQuestions" answers="answers" ng-model="teacherQ" teacher="teacher.SSN">
-						</evaluation-question>			
-					</div>
-				</div> -->
-
 			 	<accordion close-others="oneAtATime">
 	    			<accordion-group ng-repeat="teacher in evaluation.teachers" is-open="status.open">
 	        		<accordion-heading>
