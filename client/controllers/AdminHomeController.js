@@ -10,7 +10,7 @@ angular.module("schoolApp").controller("AdminHomeController", ["$scope", "$modal
 		$scope.viewTemplate = function (templateID) {
 
 			apiFactory.adminGetTemplate(templateID).then(function (results) {
-
+				console.log("results: ", results);
 				var modalInstance = $modal.open({
 					templateUrl: "/client/views/modals/viewTemplateModal.html",
 					controller: "ViewTemplateModalController",
