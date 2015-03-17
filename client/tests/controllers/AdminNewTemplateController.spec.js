@@ -1,4 +1,4 @@
-describe('AdminHomeController', function () {
+describe('AdminNewTemplateController', function () {
 
 	var $controller;
 	var $scope;
@@ -11,6 +11,7 @@ describe('AdminHomeController', function () {
 	var deferred3;
 	var mockApiFactory;
 	var mockUserFactory;
+	var newQuestionObject;
 
 	var evaluationsResult = [{
 		ID: 33,
@@ -74,7 +75,7 @@ describe('AdminHomeController', function () {
 				return {
 					result: {
 						then: function (fn) {
-							fn("pizzahut");
+							fn(newQuestionObject);
 						}
 					}
 				};
@@ -95,7 +96,7 @@ describe('AdminHomeController', function () {
 
 		$q = _$q_;
 
-		$controller = _$controller_("AdminHomeController", {
+		$controller = _$controller_("AdminNewTemplateController", {
 			$scope: $scope,
 			$modal: mockModal,
 			apiFactory: mockApiFactory,
@@ -105,90 +106,69 @@ describe('AdminHomeController', function () {
 
 	}));
 
-	it("should check whether the user is logged in on initialization", function () {
-		spyOn(mockUserFactory, "checkValid").and.callThrough();
-
-		$scope.init();
-
-		deferred1.resolve({
-			data: []
-		});
-
-		deferred2.resolve({
-			data: []
-		});
-
-		$rootScope.$apply();
-
-		expect(mockUserFactory.checkValid).toHaveBeenCalled();
-	});
-
-	it("should populate evaluationsResults with evaluations after initialization", function () {
-
-		expect($scope.evaluations.length).toEqual(0);
-
-		$scope.init();
-
-		deferred2.resolve({
-			data: evaluationsResult
-		});
-
-		$rootScope.$apply();
-
-		expect($scope.evaluations).toEqual(evaluationsResult);
-
-	});
-
-
-	it("should populate templateResults with templates after initialization", function () {
-
-		expect($scope.templates.length).toEqual(0);
-
-		$scope.init();
-
-		deferred1.resolve({
-			data: templateResult
-		});
-
-		$rootScope.$apply();
-
-		expect($scope.templates).toEqual(templateResult);
-
-	});
-
-	it("should redirect to create a template", function () {
-
-		spyOn($location, "path").and.callThrough();
-
-		$scope.createTemplate();
-
-		$rootScope.$apply();
-
-		expect($location.path).toHaveBeenCalledWith("/admin/newtemplate");
-	});
-
 	it("should open a modal with the template specified", function () {
 
-		var templateObj = {
-			CourseQuestions: [],
-			TeacherQuestions: [],
-			ID: 1,
-			Title: "Template2",
-			IntroText: "the template 2"
+		newQuestionObject = {
+			Text: "a",
+			TextEN: "b",
+			type: "single",
+			Answers: []
 		};
 
 		spyOn(mockModal, "open").and.callThrough();
 
-		$scope.viewTemplate(12);
-
-		deferred3.resolve({
-			data: templateObj
-		});
+		$scope.newQuestion();
 
 		$rootScope.$apply();
 
-		expect(mockModal.open).toHaveBeenCalled();
+		expect(mockModal.open).toHaveBeenCalledWith({
+			templateUrl: "/client/views/modals/newQuestionModal.html",
+			controller: "NewQuestionModalController"
+		});
 
+	});
+
+	it("should add to the CourseQuestions a new question", function () {
+
+		expect($scope.template.CourseQuestions.length).toEqual(0);
+
+		newQuestionObject = {
+			Text: "a",
+			TextEN: "b",
+			type: "single",
+			Answers: [],
+			category: "Course question"
+		};
+
+		spyOn(mockModal, "open").and.callThrough();
+
+		$scope.newQuestion();
+
+		$rootScope.$apply();
+
+		expect($scope.template.CourseQuestions.length).toEqual(1);
+
+	});
+
+	it("should add to the TeacherQuestions a new question", function () {
+
+		expect($scope.template.TeacherQuestions.length).toEqual(0);
+
+		newQuestionObject = {
+			Text: "a",
+			TextEN: "b",
+			type: "text",
+			Answers: [],
+			category: "Teacher question"
+		};
+
+		spyOn(mockModal, "open").and.callThrough();
+
+		$scope.newQuestion();
+
+		$rootScope.$apply();
+
+		expect($scope.template.TeacherQuestions.length).toEqual(1);
 
 	});
 

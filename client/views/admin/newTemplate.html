@@ -1,0 +1,108 @@
+<div class="container-fluid">
+
+	<div class="row mainContent col-sm-8 col-sm-offset-2">
+
+		<h1 class="text-center">Nýtt sniðmát (<span class="italic">New template</span>)</h1>
+
+		<div class="inputspacing">
+			<span class="col-xs-3">
+				Sniðmáts titill:
+			</span> 
+			<span class="col-xs-9">
+				<input ng-model="template.Title" type="text">	
+			</span>	
+		</div>
+
+		<div class="inputspacing">
+			<span class="col-xs-3">
+				Template title:
+			</span> 
+			<span class="col-xs-9">
+				<input ng-model="template.TitleEN" type="text">	
+			</span>	
+		</div>
+
+		<div class="inputspacing">
+			<span class="col-xs-3">
+				Inngangstexti:
+			</span> 
+			<span class="col-xs-9">
+				<textarea ng-model="template.IntroText" class="textbox">
+					
+				</textarea>
+			</span>	
+		</div>
+
+		<div class="inputspacing">
+			<span class="col-xs-3">
+				Introduction:
+			</span> 
+			<span class="col-xs-9">
+				<textarea ng-model="template.IntroTextEN" class="textbox">
+					
+				</textarea>	
+			</span>	
+		</div>
+
+		<div class="newQuestions">
+
+			<div class="courseQuestions" ng-show="template.CourseQuestions.length">
+				
+				<h3>
+					Áfanga Spurningar 
+					(<span class="italic">Course questions</span>) 
+				</h3>
+
+				<div ng-repeat="courseQ in template.CourseQuestions">
+					<div>
+						<h4>{{courseQ.Text}} (<span class="italic">{{courseQ.TextEN}}</span>)</h4>
+						
+						<div ng-show="courseQ.Type === 'text'">
+							<textarea class="textbox">
+								
+							</textarea>
+						</div>
+
+						<div ng-repeat="answer in courseQ.Answers" ng-show="courseQ.Type === 'single'">
+								<input type="radio"> {{answer.Text}} (<span class="italic">{{answer.TextEN}}</span>)
+						</div>
+					</div>
+				</div>
+				
+			</div>
+
+			<div class="teacherQuestions" ng-show="template.TeacherQuestions.length">
+				
+				<h3>
+					Kennara Spurningar 
+					(<span class="italic">Teacher questions</span>) 
+				</h3>
+
+				<div ng-repeat="teacherQ in template.TeacherQuestions">
+					<div>
+						<h4>{{teacherQ.Text}} (<span class="italic">{{teacherQ.TextEN}}</span>)</h4>
+						
+						<div ng-show="teacherQ.Type === 'text'">
+							<textarea class="textbox">
+								
+							</textarea>
+						</div>
+
+						<div ng-repeat="answer in teacherQ.Answers" ng-show="teacherQ.Type === 'single'">
+								<input type="radio"> {{answer.Text}} (<span class="italic">{{answer.TextEN}}</span>)
+						</div>
+					</div>
+				</div>
+				
+			</div>
+			
+			<button class="btn btn-default pull-right" ng-click="newQuestion()">
+				Bæta við spurning <br> (<span class="italic">Add question</span>)
+			</button>
+
+
+		</div>
+
+	</div>
+
+</div>

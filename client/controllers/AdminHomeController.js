@@ -1,22 +1,12 @@
-angular.module("schoolApp").controller("AdminHomeController", ["$scope", "$modal", "apiFactory", "userFactory",
+angular.module("schoolApp").controller("AdminHomeController", ["$scope", "$modal", "apiFactory", "userFactory", "$location",
 
-	function ($scope, $modal, apiFactory, userFactory) {
+	function ($scope, $modal, apiFactory, userFactory, $location) {
 
 		$scope.createTemplate = function () {
 
-			$scope.modalInstance = $modal.open({
-				templateUrl: "/client/views/modals/newTemplateModal.html",
-				controller: "NewTemplateModalController"
-			});
-
-			$scope.modalInstance.result.then(function (selectedItem){
-
-				
-
-			});
+			$location.path("/admin/newtemplate");
 
 		};
-
 		$scope.viewTemplate = function (templateID) {
 
 			apiFactory.adminGetTemplate(templateID).then(function (results) {
@@ -26,7 +16,7 @@ angular.module("schoolApp").controller("AdminHomeController", ["$scope", "$modal
 					controller: "ViewTemplateModalController",
 					resolve: {
 						currentTemplate: function () {
-							return results;
+							return results.data;
 						}
 					}
 				});
