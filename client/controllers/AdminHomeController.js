@@ -33,8 +33,8 @@ angular.module("schoolApp").controller("AdminHomeController", ["$scope", "$modal
 				console.log("viewResults: ", results);
 
 				var modalInstance = $modal.open({
-					templateUrl: "/client/views/modals/viewTemplateModal.html",
-					controller: "ViewTemplateModalController",
+					templateUrl: "/client/views/modals/viewResults.html",
+					controller: "ViewResultsController",
 					resolve: {
 						currentTemplate: function () {
 							return results.data;

@@ -60,16 +60,6 @@ describe('NewQuestionModalController', function () {
 
 	});
 
-	it("should add the appropriate error if no questionText is filled out", function () {
-
-		$scope.ok();
-
-		$rootScope.$apply();
-
-		expect($scope.errors.questionText).toEqual(true);
-
-	});
-
 	it("should add the appropriate error if an option is not filled out in single choice", function () {
 
 		$scope.question.Text = "Hvernig eru fyrirlestrarnir";
@@ -90,12 +80,21 @@ describe('NewQuestionModalController', function () {
 
 	});
 
-	it("should send along the correct data if all is successful", function () {
+	it("should send along the correct data if all is successful and we hh", function () {
 
 		spyOn(mockModalInstance, "close").and.callThrough();
 
 		$scope.question.Text = "Hvernig eru fyrirlestrarnir";
 		$scope.question.TextEN = "How is the lectures";
+
+		$scope.questionBase = {
+			question: {
+				$invalid: false
+			},
+			questionEN: {
+				$invalid: false
+			}
+		};
 
 		$scope.ok();
 

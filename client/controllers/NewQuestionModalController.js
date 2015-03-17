@@ -49,7 +49,7 @@ angular.module("schoolApp").controller("NewQuestionModalController", ["$scope", 
 				show: true
 			};
 
-			if (!$scope.questionBase.question.$invalid || !$scope.questionBase.questionEN.$invalid) {
+			if (!$scope.questionBase.question.$invalid && !$scope.questionBase.questionEN.$invalid) {
 				$modalInstance.close($scope.question);
 			}
 
