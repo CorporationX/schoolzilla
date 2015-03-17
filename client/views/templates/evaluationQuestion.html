@@ -8,6 +8,6 @@
 	</div>
 
 	<div ng-repeat="answer in question.Answers" ng-show="question.Type === 'single'">
-			<input name="answergroup" type="radio" ng-model="answers[ID].value" ng-value="answer.ID"> {{answer.Text}}
+			<input name="answergroup{{$index}}" type="radio" ng-model="answers[ID].value" ng-value="answer.ID"> {{answer.Text}}
 	</div>
 </div>
