@@ -33,7 +33,7 @@
 							</div>
 
 							<div ng-repeat="answer in courseQ.Answers"ng-show="courseQ.Type === 'single'">
-								<input name="courseAnswergroup{{$index}}" type="radio"> {{answer.Text}} (<span class="italic">{{answer.TextEN}}</span>)
+								<input name="courseAnswergroup{{answer.Text}}" type="radio"> {{answer.Text}} (<span class="italic">{{answer.TextEN}}</span>)
 							</div>
 						</div>
 
@@ -55,7 +55,7 @@
 							</div>
 
 							<div ng-repeat="answer in teacherQ.Answers"ng-show="teacherQ.Type === 'single'">
-								<input name="teacherAnswergroup{{$index}}"  type="radio"> {{answer.Text}} (<span class="italic">{{answer.TextEN}}</span>)
+								<input name="teacherAnswergroup{{answer.Text}}"  type="radio"> {{answer.Text}} (<span class="italic">{{answer.TextEN}}</span>)
 							</div>
 						</div>
 
