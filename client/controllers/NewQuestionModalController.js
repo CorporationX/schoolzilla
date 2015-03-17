@@ -15,8 +15,8 @@ angular.module("schoolApp").controller("NewQuestionModalController", ["$scope", 
 		};
 
 		$scope.errors = {
-			questionText: false,
-			single: false
+			single: false,
+			show: false
 		};
 
 		$scope.addOption = function () {
@@ -35,17 +35,6 @@ angular.module("schoolApp").controller("NewQuestionModalController", ["$scope", 
 		};
 
 		$scope.ok = function () {
-
-			if (!$scope.question.Text || !$scope.question.TextEN) {
-				$scope.errors.questionText = true;
-				return;
-			}
-
-			$scope.erors = {
-				questionText: false,
-				single: false
-			};
-
 			if ($scope.question.type === "single") {
 				for (var i = 0; i < $scope.question.options.length; i++) {
 					if (!$scope.question.options[i].Text || !$scope.question.options[i].TextEN) {
@@ -55,12 +44,14 @@ angular.module("schoolApp").controller("NewQuestionModalController", ["$scope", 
 				}
 			}
 
-			$scope.erors = {
-				questionText: false,
-				single: false
+			$scope.errors = {
+				single: false,
+				show: true
 			};
 
-			$modalInstance.close($scope.question);
+			if (!$scope.questionBase.question.$invalid || !$scope.questionBase.questionEN.$invalid) {
+				$modalInstance.close($scope.question);
+			}
 
 		};
 

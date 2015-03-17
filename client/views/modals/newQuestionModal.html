@@ -45,23 +45,27 @@
 				</div>
 			</div>
 
-			<div class="line">
-				<div class="col-xs-3">
-					Spurning: <br>
-				</div>
-				<div class="col-xs-9">
-					<input type="text" ng-model="question.Text">
-				</div>
-			</div>
+			<form novalidate name="questionBase">
 
-			<div class="line">
-				<div class="col-xs-3">
-					Question: <br>
+				<div class="line">
+					<div class="col-xs-3">
+						Spurning: <br>
+					</div>
+					<div class="col-xs-9">
+						<input name="question" required="required" type="text" ng-model="question.Text">
+					</div>
 				</div>
-				<div class="col-xs-9">
-					<input type="text" ng-model="question.TextEN">
+
+				<div class="line">
+					<div class="col-xs-3">
+						Question: <br>
+					</div>
+					<div class="col-xs-9">
+						<input name="questionEN" required="required" type="text" ng-model="question.TextEN">
+					</div>
 				</div>
-			</div>
+
+			</form>
 
 			<div ng-show="question.type === 'single'">
 				
@@ -76,7 +80,6 @@
 						</div>
 					
 					</div>
-
 					<div>
 						<div class="col-xs-3">
 							Option {{$index + 1}}: <br>
@@ -85,23 +88,27 @@
 							<input type="text" ng-model="question.options[$index].TextEN">
 						</div>
 					</div>
-
+				</div>
+				
+			</div>
+		</div>
+				<button class="btn btn-default pull-right" ng-click="addOption()">
+					Bæta við valmöguleika <br>
+					(<span class="italic">Add option</span>)
+				</button>
+			
+				<div class="errorBlock" ng-show="errors.show">	
+					<p class="errorMessage" ng-show="questionBase.question.$error.required">-Spurningu vantar</p>
+					<p class="errorMessage" ng-show="questionBase.questionEN.$error.required">-Question is missing</p>
+					<p class="errorMessage" ng-show="errors.single">-bannað að gera tóman valmöguleika</p>
 				</div>
 
-			</div>
-
-			<button class="btn btn-default pull-right" ng-click="addOption()">
-				Bæta við valmöguleika <br>
-				(<span class="italic">Add option</span>)
-			</button>
-
-		</div>
 	</div>
 
 </div>
 
 <div class="modal-footer">
-
 	<button class="btn btn-primary" ng-click="ok()">Ok</button>
 	<button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+		
 </div>
