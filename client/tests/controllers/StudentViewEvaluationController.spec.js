@@ -4,8 +4,10 @@ describe('StudentViewEvaluationController', function () {
 	var $scope;
 	var $q;
 	var $rootScope;
+	var $location;
 	var deferred1;
 	var deferred2;
+	var deferred3;
 
 	var mockRouteParams = {
 		courseID: "vef2",
@@ -52,6 +54,10 @@ describe('StudentViewEvaluationController', function () {
 			studentGetTeachers: function () {
 				deferred2 = $q.defer();
 				return deferred2.promise;
+			},
+			studentPostEvaluation: function () {
+				deferred3 = $q.defer();
+				return deferred3.promise;
 			}
 		};
 
@@ -63,16 +69,19 @@ describe('StudentViewEvaluationController', function () {
 
 	});
 
-	beforeEach(inject(function (_$q_, _$controller_, _$rootScope_) {
+	beforeEach(inject(function (_$q_, _$controller_, _$rootScope_, _$location_) {
 		$rootScope = _$rootScope_;
 		$scope = $rootScope.$new();
 
 		$q = _$q_;
 
+		$location = _$location_;
+
 		$controller = _$controller_("StudentViewEvaluationController", {
 			$scope: $scope,
 			$routeParams: mockRouteParams,
-			apiFactory: mockApiFactory
+			apiFactory: mockApiFactory,
+			$location: _$location_
 		});
 
 	}));
@@ -115,7 +124,7 @@ describe('StudentViewEvaluationController', function () {
 
 	});
 
-	it("should only post questions that have answers", function (){
+	it("should only post questions that have answers", function () {
 
 		$scope.answers = {
 			1: {
@@ -124,12 +133,35 @@ describe('StudentViewEvaluationController', function () {
 			},
 			2: {
 				QuestionID: 13
-			}	
+			}
 		};
 
 		$scope.sendEvaluation();
 
-		expect($scope.evaluationAnswers).toEqual([{QuestionID: 12, value: "asdf"}]);
+		expect($scope.evaluationAnswers).toEqual([{
+			QuestionID: 12,
+			value: "asdf"
+		}]);
+
+	});
+
+	it("should only post questions that have answers", function () {
+
+		spyOn($location, "path");
+
+		$scope.answers = [];
+		$scope.evaluationAnswers = [{
+			QuestionID: 1,
+			Value: "Yes"
+		}];
+
+		$scope.sendEvaluation();
+
+		deferred3.resolve({});
+
+		$rootScope.$apply();
+
+		expect($location.path).toHaveBeenCalledWith("/student/home");
 
 	});
 

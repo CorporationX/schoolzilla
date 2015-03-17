@@ -100,6 +100,39 @@ describe('apiFactory', function () {
 
 	});
 
+	it("should post the evaluation", function () {
+
+		var evaluationVariables = {
+			courseID: "vef2",
+			semesterID: "20151",
+			evalID: 123
+		};
+
+		var evaluationItems = [{
+			QuestionID: 1,
+			Value: "good"
+		}];
+
+		$httpBackend.expect("POST", "http://dispatch.ru.is/demo/api/v1/courses/vef2/20151/evaluations/123", evaluationItems).respond(200);
+
+		apiFactory.studentPostEvaluation(evaluationVariables, evaluationItems);
+
+		$httpBackend.flush();
+
+	});
+
+
+	it("should get the evaluation", function () {
+
+		var templateID = 12;
+
+		$httpBackend.expect("GET", "http://dispatch.ru.is/demo/api/v1/evaluations/12").respond(200);
+
+		apiFactory.adminGetEvaluation(templateID);
+
+		$httpBackend.flush();
+
+	});
 
 	afterEach(function () {
 
