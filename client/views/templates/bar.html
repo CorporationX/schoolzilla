@@ -1,0 +1,13 @@
+<div class="row" ng-repeat="value in values">
+
+	<div class="col-xs-3">
+		{{value.AnswerText}} 
+		<br>
+		(<span class="italic">{{value.AnswerTextEN}}</span>)		
+	</div>
+
+	<div class="col-xs-9">
+		<meter value="{{value.Count}}" min="0" max="{{values.length}}"></meter> <span>{{value.Count}}</span>
+	</div>
+
+</div>
