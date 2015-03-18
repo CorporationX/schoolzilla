@@ -116,10 +116,8 @@
 			</div>
 
 			<div class="errorBlock" ng-show="saved.template">	
-					<p class="errorMessage" ng-show="templateBase.title.$error.required">-Sniðmáts titil vantar</p>
-					<p class="errorMessage" ng-show="templateBase.titleEN.$error.required">-Template title is missing</p>
-					<p class="errorMessage" ng-show="templateBase.introText.$error.required">-Inngangstexta vantar</p>
-					<p class="errorMessage" ng-show="templateBase.introTextEN.$error.required">-Introduction is missing</p>
+					<p class="errorMessage" ng-show="templateBase.title.$error.required || templateBase.titleEN.$error.required">-Sniðmátstitil vantar (<span class="italic">Template title is missing</span>)</p>
+					<p class="errorMessage" ng-show="templateBase.introText.$error.required || templateBase.introTextEN.$error.required">-Inngangstexta vantar (<span class="italic">Introduction is missing</span>)</p>
 					<p class="errorMessage" ng-show="errors.template">-Þú getur ekki vistað sniðmát ef engin spurning hefur verið vistuð <br><span class="italic">-You can't save a template if no questions have been saved</span></p>
 			</div>
 

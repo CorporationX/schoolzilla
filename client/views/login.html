@@ -3,19 +3,19 @@
 		<div id="loginForm" class="col-sm-4 col-sm-offset-4 col-xs-10 col-xs-offset-1">
 
 			<div>
-				<h1>Login Page</h1>
+				<h1>Innskráning (<span class="italic">Login</span>)</h1>
 			</div>
 
 			<form novalidate name="loginForm">
 	
 				<div class="spacing form-group">
-					<label for="loginName"> Username</label>
+					<label for="loginName">Notendanafn (<span class="italic">Username</span>)</label>
 
 					<input type="text" class="form-control" id="loginName" name="loginName" ng-model="user.username" required="required" focus-directive enter-directive enter="login()">
 				</div>
 			
 				<div class="spacing form-group">
-					<label for="loginPass"> Password</label>	
+					<label for="loginPass">Lykilorð (<span class="italic">Password</span>)</label>	
 
 					<input type="text" class="form-control" id="loginPass" name="loginPass" ng-model="user.password" required="required" enter-directive enter="login()">
 				</div>
@@ -23,9 +23,9 @@
 				<button class="btn btn-default" ng-click="login()">Log in</button>
 
 				<div class="errorBlock text-center" ng-show="submitted">
-					<p class="errorMessage" ng-show="errors.available">Incorrect credentials</p>
-					<p class="errorMessage" ng-show="loginForm.loginName.$error.required">Username is required</p>
-					<p class="errorMessage" ng-show="loginForm.loginPass.$error.required">Password is required</p>
+					<p class="errorMessage" ng-show="errors.available">Rangt notendanafn/lykilorð (<span class="italic">Incorrect credentials</span>)</p>
+					<p class="errorMessage" ng-show="loginForm.loginName.$error.required">Notendanafn þarf að vera útfyllt (<span class="italic">Username is required</span>)</p>
+					<p class="errorMessage" ng-show="loginForm.loginPass.$error.required">Lykilorð þarf að vera útfyllt (<span class="italic">Password is required</span>)</p>
 				</div>
 			
 			</form>

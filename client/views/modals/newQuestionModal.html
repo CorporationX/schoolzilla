@@ -102,9 +102,8 @@
 				</div>
 			
 				<div class="errorBlock" ng-show="errors.show">	
-					<p class="errorMessage" ng-show="questionBase.question.$error.required">-Spurningu vantar</p>
-					<p class="errorMessage" ng-show="questionBase.questionEN.$error.required">-Question is missing</p>
-					<p class="errorMessage" ng-show="errors.single">-bannað að gera tóman valmöguleika</p>
+					<p class="errorMessage" ng-show="questionBase.question.$error.required || questionBase.questionEN.$error.required">-Spurningu vantar (<span class="italic">Question is missing</span>)</p>
+					<p class="errorMessage" ng-show="errors.single">-Bannað að gera tóman valmöguleika (<span class="">An empty option is not an option</span>)</p>
 				</div>
 
 	</div>
