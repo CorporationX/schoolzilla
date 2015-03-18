@@ -1,9 +1,6 @@
 angular.module("schoolApp").controller("NewEvaluationModalController", ["$scope", "$modalInstance", "templates",
 	function ($scope, $modalInstance, templates) {
-		// $scope.errors = {
-		// 	single: false,
-		// 	show: false
-		// };
+
 		$scope.templates = templates;
 		$scope.evalObject = {
 			templateID: "",

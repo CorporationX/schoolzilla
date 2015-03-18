@@ -22,7 +22,7 @@
 			<div class="col-xs-3">
 				Byrjar (<span class="italic">Starts</span>)
 			</div>
-			<div class="col-xs-9">
+			<div class="col-xs-6">
 				<div class="dropdown">
 					<a class="dropdown-toggle my-toggle-select" id="dLabel" role="button" data-toggle="dropdown" data-target="#" href="">
 						<div class="input-append">
@@ -36,12 +36,14 @@
 					</ul>
 				</div>
 			</div>
+			<div class="col-xs-3">
+			</div>
 		</div>
 		<div class="line">
 			<div class="col-xs-3">
 				Endar (<span class="italic">Ends</span>)
 			</div>
-			<div class="col-xs-9">
+			<div class="col-xs-6">
 				<div class="dropdown">
 					<a class="dropdown-toggle my-toggle-select" id="dLabel" role="button" data-toggle="dropdown" data-target="#" href="">
 						<div class="input-append">
@@ -55,9 +57,19 @@
 					</ul>
 				</div>
 			</div>
+			<div class="col-xs-3">
+			</div>
+		</div>
+		<div class="line">
+			<div class="errorBlock" ng-show="errors.show">	
+				<p class="errorMessage" ng-show="errors.templateIDError">-Please choose template</p>
+				<p class="errorMessage" ng-show="errors.StartDateError">-Please choose start date</p>
+				<p class="errorMessage" ng-show="errors.EndDateError">-Please choose end date</p>
+			</div>
 		</div>
 	</div>
 </div>
+
 
 <div class="modal-footer">
 	<button class="btn btn-primary" ng-click="ok()">Ok</button>
