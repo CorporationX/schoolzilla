@@ -59,7 +59,9 @@ angular.module("schoolApp").controller("AdminNewTemplateController", ["$scope", 
 				return;
 			}
 
-			console.log("saving template", $scope.template);
+			apiFactory.adminPostTemplate($scope.template).then(function (results) {
+				$location.path("/admin/home");
+			});
 
 		};
 

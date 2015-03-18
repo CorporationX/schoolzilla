@@ -1,0 +1,40 @@
+<div class="container-fluid">
+
+	<div class="row">
+
+		<h1 class="text-center">
+			Niðurstöður fyrir {{results.TemplateTitle}} <br>
+			(<span class="italic">Results for {{results.TemplateTitleEN}}</span>)
+		</h1>
+
+		<div class="col-sm-8 col-sm-offset-2">
+			
+			<div class="mainContent border-fix">
+								
+				<table class="table table-striped">
+					<tr>
+						<th class="firstheader"> Fög (<span class="italic">Courses</span>):</th>
+						<th class="lastheader"></th>
+					</tr>
+					<tbody ng-repeat="course in results.Courses track by $index">
+						<tr class="tablecolor">
+							<td class="col-xs-10">{{course.CourseName}} (<span class="italic">{{course.CourseNameEN}}</span>)</td>
+							<td class="col-xs-2">
+								<button class="pull-right btn btn-default btn-sm backgroundcolor" ng-click="viewResult($index)" >
+									Skoða Niðurstöður <br> 
+									(<span class="italic">View Results</span>)
+								</button>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<button class="btn btn-danger btnmargin" ng-click="cancel()">Back to main page</button>
+			</div>
+
+
+		</div>
+
+		
+	</div>
+
+</div>

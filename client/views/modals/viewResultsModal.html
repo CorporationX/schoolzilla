@@ -1,0 +1,67 @@
+<div class="modal-header">
+	<h3 class="modal-title text-center">
+		Niðurstöður fyrir {{template.TemplateTitle}} <br>
+		(<span class="italic">Results for {{template.TemplateTitleEN}} </span>)
+	</h3>
+
+</div>
+
+<div class="modal-body">
+	
+	<h4 class="text-center">
+		{{results.CourseName}} {{results.Semester}} <br>
+		(<span class="italic">{{results.CourseNameEN}} {{results.Semester}} </span>)
+	</h4>
+
+	<accordion close-others="oneAtATime">
+
+		<accordion-group ng-repeat="result in results.Questions" is-open="status.open">
+
+			<accordion-heading>
+			Spurning: {{result.Text}} 
+			<br>
+			(<span class="italic">Question: {{result.TextEN}}</span>)
+			<br>
+			<span ng-show="result.TeacherSSN === null">
+				Áfangaspurning <br>
+				(<span class="italic">Course question</span>)
+			</span>
+			<span ng-show="result.TeacherSSN !== null">
+				Kennaraspurning handa {{result.TeacherSSN}} <br>
+				(<span class="italic">Teacher question for {{result.TeacherSSN}}</span>)
+			</span>
+			 
+			<!-- Spurningar fyrir (<span class="italic">Questions for</span>): {{teacher.FullName}} --> 
+			<i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
+			</accordion-heading>
+
+			<div ng-show="result.TextResults.length">
+				<div ng-repeat="textResult in result.TextResults track by $index">
+					{{textResult}}
+				</div>
+			</div>
+
+			<div ng-show="result.OptionsResults.length">
+				<div ng-repeat="optionResult in result.OptionsResults track by $index">
+					{{optionResult.AnswerText}} (<span class="italic">{{optionResult.AnswerTextEN}}</span>)
+					Count: {{optionResult.Count}}
+				</div>
+			</div>
+			
+			<!-- <evaluation-question ng-repeat="teacherQ in evaluation.data.TeacherQuestions" answers="answers" ng-model="teacherQ" teacher="teacher.SSN">
+			</evaluation-question>	 --> 
+
+		</accordion-group>
+
+	</accordion>
+
+	{{results}}
+	{{template}}
+
+</div>
+
+<div class="modal-footer">
+	<button class="btn btn-primary" ng-click="ok()">Ok</button>
+	<button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+		
+</div>

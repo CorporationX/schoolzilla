@@ -134,6 +134,30 @@ describe('apiFactory', function () {
 
 	});
 
+	it("should post the template", function () {
+
+		var template = {
+			Title: "midannarmat",
+			TitleEN: "midterm",
+			IntroText: "jamm",
+			IntroTextEN: "yup",
+			CourseQuestions: [{
+				Text: "rett",
+				TextEN: "correct",
+				ImageURL: "",
+				Type: "text"
+			}],
+			TeacherQuestions: []
+		};
+
+		$httpBackend.expect("POST", "http://dispatch.ru.is/demo/api/v1/evaluationtemplates", template).respond(200);
+
+		apiFactory.adminPostTemplate(template);
+
+		$httpBackend.flush();
+
+	});
+
 	afterEach(function () {
 
 		$httpBackend.verifyNoOutstandingExpectation();

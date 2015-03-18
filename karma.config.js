@@ -20,6 +20,7 @@ module.exports = function (config) {
             'bower_components/angular-route/angular-route.js',
             'bower_components/angular-bootstrap/ui-bootstrap.js',
             'bower_components/angular-mocks/angular-mocks.js',
+            'bower_components/highcharts-ng.js',
             'client/**/*.js',
             'client/tests/**/*.js'
         ],

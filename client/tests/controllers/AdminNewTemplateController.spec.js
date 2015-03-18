@@ -9,6 +9,7 @@ describe('AdminNewTemplateController', function () {
 	var deferred1;
 	var deferred2;
 	var deferred3;
+	var deferred4;
 	var mockApiFactory;
 	var mockUserFactory;
 	var newQuestionObject;
@@ -52,6 +53,10 @@ describe('AdminNewTemplateController', function () {
 			adminGetTemplate: function () {
 				deferred3 = $q.defer();
 				return deferred3.promise;
+			},
+			adminPostTemplate: function () {
+				deferred4 = $q.defer();
+				return deferred4.promise;
 			}
 		};
 
@@ -207,11 +212,35 @@ describe('AdminNewTemplateController', function () {
 
 	});
 
-	it("should cancel the modal", function () {
+	it("should redirect back to the home page when a user clicks cancel", function () {
 
 		spyOn($location, "path");
 
 		$scope.cancel();
+
+		$rootScope.$apply();
+
+		expect($location.path).toHaveBeenCalledWith("/admin/home");
+
+	});
+
+	it("should redirect back to the home page when a user successfully saves a template", function () {
+
+		spyOn($location, "path");
+
+		$scope.template.CourseQuestions = [];
+		$scope.template.TeacherQuestions = [{
+			Text: "hvernig er",
+			TextEN: "how is",
+			ImageURL: "",
+			Type: "text"
+		}];
+
+		$scope.saveTemplate();
+
+		deferred4.resolve({
+
+		});
 
 		$rootScope.$apply();
 
