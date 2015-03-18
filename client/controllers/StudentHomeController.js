@@ -8,6 +8,10 @@ angular.module("schoolApp").controller("StudentHomeController", ["$scope", "$loc
 			$location.path("/student/course/" + courseID + "/" + semesterID + "/evaluation/" + evalID);
 		};
 
+		$scope.logout = function () {
+			userFactory.logout();
+		};
+
 		$scope.init = function () {
 			userFactory.checkValid();
 

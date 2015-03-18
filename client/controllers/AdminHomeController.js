@@ -31,6 +31,10 @@ angular.module("schoolApp").controller("AdminHomeController", ["$scope", "$modal
 
 		};
 
+		$scope.logout = function () {
+			userFactory.logout();
+		};
+
 		$scope.viewTemplate = function (templateID) {
 
 			apiFactory.adminGetTemplate(templateID).then(function (results) {
