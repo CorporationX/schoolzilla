@@ -66,11 +66,39 @@ describe('apiFactory', function () {
 
 	});
 
-	it("should do nothing if the token and the user is set", function () {
+	it("should redirect to login if the token and user are not set", function () {
 
 		userFactory.checkValid();
 
 		$rootScope.$apply();
+
+		expect($location.path()).toEqual("/login");
+
+	});
+
+	it("should reset the variables when logout", function () {
+
+		userFactory.setUser(userObj);
+
+		userFactory.setToken("12345");
+
+		userFactory.logout();
+
+		$rootScope.$apply();
+
+		expect($rootScope.user).toEqual({});
+		expect($rootScope.token).toEqual("");
+
+	});
+
+	it("should redirect when logging out", function () {
+
+		userFactory.logout();
+
+		$rootScope.$apply();
+
+		expect($rootScope.user).toEqual({});
+		expect($rootScope.token).toEqual("");
 
 		expect($location.path()).toEqual("/login");
 
