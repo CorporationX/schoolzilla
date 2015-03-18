@@ -71,21 +71,21 @@
 				
 				<div class="line" ng-repeat="option in question.options track by $index">
 
-					<div>
+					<div class="optionHeight">
 						<div class="col-xs-3">
 							Valmöguleiki {{$index + 1}}: <br>
 						</div>
 						<div class="col-xs-9">
-							<input type="text" ng-model="question.options[$index].Text">
-						</div>
+							<input class="optionMargin" type="text" ng-model="question.options[$index].Text">
+						</div> 
 					
 					</div>
-					<div>
+					<div class="optionHeight">
 						<div class="col-xs-3">
 							Option {{$index + 1}}: <br>
 						</div>
 						<div class="col-xs-9">
-							<input type="text" ng-model="question.options[$index].TextEN">
+							<input class="optionMargin" type="text" ng-model="question.options[$index].TextEN">
 						</div>
 					</div>
 				</div>

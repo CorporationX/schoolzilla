@@ -17,6 +17,8 @@ angular.module("schoolApp").controller("StudentViewEvaluationController", ["$sco
 
 		};
 
+		$scope.errors = false;
+
 		$scope.evaluationAnswers = [];
 
 		$scope.sendEvaluation = function () {
@@ -25,6 +27,13 @@ angular.module("schoolApp").controller("StudentViewEvaluationController", ["$sco
 
 			for (var key in $scope.answers) {
 
+				if (!$scope.answers[key].TeacherSSN) {
+					if (!$scope.answers[key].value) {
+						$scope.errors = true;
+						return;
+					}
+				}
+				$scope.errors = false;
 				if ($scope.answers[key].value) {
 
 					$scope.evaluationAnswers.push($scope.answers[key]);
@@ -34,7 +43,6 @@ angular.module("schoolApp").controller("StudentViewEvaluationController", ["$sco
 			}
 
 			console.log("try sending", $scope.evaluationAnswers, "with properties", $scope.evaluationVariables);
-
 			apiFactory.studentPostEvaluation($scope.evaluationVariables, $scope.evaluationAnswers).then(function (results) {
 				$location.path("/student/home");
 			});
