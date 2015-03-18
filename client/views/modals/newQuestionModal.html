@@ -92,10 +92,14 @@
 				
 			</div>
 		</div>
-				<button class="btn btn-default pull-right" ng-click="addOption()">
-					Bæta við valmöguleika <br>
-					(<span class="italic">Add option</span>)
-				</button>
+				<div class="row">
+					<div class="col-xs-4 col-xs-offset-4">
+						<button class="btn btn-default" ng-click="addOption()">
+							Bæta við valmöguleika <br>
+							(<span class="italic">Add option</span>)
+						</button>
+					</div>
+				</div>
 			
 				<div class="errorBlock" ng-show="errors.show">	
 					<p class="errorMessage" ng-show="questionBase.question.$error.required">-Spurningu vantar</p>
