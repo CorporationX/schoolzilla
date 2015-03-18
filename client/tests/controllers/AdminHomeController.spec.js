@@ -192,6 +192,28 @@ describe('AdminHomeController', function () {
 
 	});
 
+	it("should open a modal with the template specified", function () {
+
+		newQuestionObject = {
+			Text: "a",
+			TextEN: "b",
+			type: "single",
+			Answers: []
+		};
+
+		spyOn(mockModal, "open").and.callThrough();
+
+		$scope.createEvaluation();
+
+		$rootScope.$apply();
+
+		expect(mockModal.open).toHaveBeenCalledWith({
+			templateUrl: "/client/views/modals/newEvaluationModal.html",
+			controller: "NewEvaluationModalController"
+		});
+
+	});
+
 
 
 });

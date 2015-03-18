@@ -1,0 +1,65 @@
+<div class="modal-header">
+	<h1 class="modal-title">Búa til nýtt kennslumat (<span class="italic">Create a new evaluation</span>)</h1>
+</div>
+
+<div class="modal-body">
+	<div class="row">
+		<div class="line">
+			<div class="col-xs-3">
+				Sniðmát
+				(<span class="italic">Template</span>)
+			</div>
+			<div class="col-xs-9">
+					<select ng-model="evalObject.templateID">
+						<option ng-repeat="template in templates" value="{{template.ID}}">
+							{{template.Title}} <br>
+							(<span class="italic">{{template.TitleEN}}</span>)
+						</option>
+					</select>
+			</div>
+		</div>
+		<div class="line">
+			<div class="col-xs-3">
+				Byrjar (<span class="italic">Starts</span>)
+			</div>
+			<div class="col-xs-9">
+				<div class="dropdown">
+					<a class="dropdown-toggle my-toggle-select" id="dLabel" role="button" data-toggle="dropdown" data-target="#" href="">
+						<div class="input-append">
+							<input type="text" class="input-large" data-ng-model="evalObject.StartDate"><span class="add-on"><i
+							class="icon-calendar"></i></span>
+						</div>
+					</a>
+					<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+						<datetimepicker data-ng-model="evalObject.StartDate"
+						data-datetimepicker-config="{ dropdownSelector: '.my-toggle-select' }"></datetimepicker>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="line">
+			<div class="col-xs-3">
+				Endar (<span class="italic">Ends</span>)
+			</div>
+			<div class="col-xs-9">
+				<div class="dropdown">
+					<a class="dropdown-toggle my-toggle-select" id="dLabel" role="button" data-toggle="dropdown" data-target="#" href="">
+						<div class="input-append">
+							<input type="text" class="input-large" data-ng-model="evalObject.EndDate"><span class="add-on"><i
+							class="icon-calendar"></i></span>
+						</div>
+					</a>
+					<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+						<datetimepicker data-ng-model="evalObject.EndDate"
+						data-datetimepicker-config="{ dropdownSelector: '.my-toggle-select' }"></datetimepicker>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="modal-footer">
+	<button class="btn btn-primary" ng-click="ok()">Ok</button>
+	<button class="btn btn-primary" ng-click="cancel()">Close</button>
+</div>

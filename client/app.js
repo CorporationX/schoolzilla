@@ -1,4 +1,4 @@
-angular.module("schoolApp", ["ngRoute", "ui.bootstrap"])
+angular.module("schoolApp", ["ngRoute", "ui.bootstrap", "ui.bootstrap.datetimepicker"])
 
 
 .config(["$routeProvider", function ($routeProvider) {
@@ -15,8 +15,7 @@ angular.module("schoolApp", ["ngRoute", "ui.bootstrap"])
 		}).when("/admin/home", {
 			templateUrl: "/client/views/admin/home.html",
 			controller: "AdminHomeController"
-		})
-		.when("/admin/newtemplate", {
+		}).when("/admin/newtemplate", {
 			templateUrl: "/client/views/admin/newTemplate.html",
 			controller: "AdminNewTemplateController"
 		})

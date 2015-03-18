@@ -5,6 +5,28 @@ angular.module("schoolApp").controller("AdminHomeController", ["$scope", "$modal
 		$scope.createTemplate = function () {
 
 			$location.path("/admin/newtemplate");
+		};
+
+
+		// apiFactory.adminGetTemplates().then(function (results) {
+		// 	console.log("NewEvaluationModalController templates", results);
+		// 	$scope.templates = results.data;
+		// });
+		$scope.createEvaluation = function () {
+			apiFactory.adminGetTemplates().then(function (results) {
+				$scope.modalInstance = $modal.open({
+					templateUrl: "/client/views/modals/newEvaluationModal.html",
+					controller: "NewEvaluationModalController",
+					resolve: {
+						templates: function () {
+							return results.data;
+						}
+					}
+				});
+				$scope.modalInstance.result.then(function (newQuestion) {
+					console.log("new question is", newQuestion);
+				});
+			});
 
 		};
 
