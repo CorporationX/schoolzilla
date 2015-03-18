@@ -39,6 +39,7 @@ angular.module("schoolApp").controller("NewQuestionModalController", ["$scope", 
 				for (var i = 0; i < $scope.question.options.length; i++) {
 					if (!$scope.question.options[i].Text || !$scope.question.options[i].TextEN) {
 						$scope.errors.single = true;
+						$scope.errors.show = true;
 						return;
 					}
 				}

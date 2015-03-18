@@ -100,13 +100,13 @@
 				
 			</div>
 			<div class="row">
-			<div class="col-sm-3 pull-right">
-			<button class="btn btn-default pull-right" ng-click="newQuestion()">
-				Bæta við spurning <br> (<span class="italic">Add question</span>)
-			</button>
+				<div class="col-xs-3 col-xs-offset-9 pull-right">
+					<button class="btn btn-default pull-right" ng-click="newQuestion()">
+						Bæta við spurning <br> (<span class="italic">Add question</span>)
+					</button>
+				</div>
 			</div>
-
-			<div class="line col-sm-3">
+			<div class="line text-center">
 				<button class="btn btn-success" ng-click="saveTemplate()">
 					Ok
 				</button>
@@ -115,7 +115,7 @@
 				</button>
 			</div>
 
-			<div class="errorBlock col-sm-6" ng-show="saved.template">	
+			<div class="errorBlock" ng-show="saved.template">	
 					<p class="errorMessage" ng-show="templateBase.title.$error.required">-Sniðmáts titil vantar</p>
 					<p class="errorMessage" ng-show="templateBase.titleEN.$error.required">-Template title is missing</p>
 					<p class="errorMessage" ng-show="templateBase.introText.$error.required">-Inngangstexta vantar</p>
@@ -123,7 +123,7 @@
 					<p class="errorMessage" ng-show="errors.template">-Þú getur ekki vistað sniðmát ef engin spurning hefur verið vistuð <br><span class="italic">-You can't save a template if no questions have been saved</span></p>
 			</div>
 
-			</div>
+			
 		</div>
 
 	</div>
