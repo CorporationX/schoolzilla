@@ -42,14 +42,9 @@
 			</div>
 
 			<div ng-show="result.OptionsResults.length">
-				<div ng-repeat="optionResult in result.OptionsResults track by $index">
-					{{optionResult.AnswerText}} (<span class="italic">{{optionResult.AnswerTextEN}}</span>)
-					Count: {{optionResult.Count}}
-				</div>
+				<bar-directive values="result.OptionsResults"></bar-directive>
 			</div>
 			
-			<!-- <evaluation-question ng-repeat="teacherQ in evaluation.data.TeacherQuestions" answers="answers" ng-model="teacherQ" teacher="teacher.SSN">
-			</evaluation-question>	 --> 
 
 		</accordion-group>
 
