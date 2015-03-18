@@ -78,6 +78,9 @@ describe('AdminHomeController', function () {
 			},
 			checkValid: function () {
 
+			},
+			logout: function () {
+
 			}
 		};
 
@@ -327,6 +330,16 @@ describe('AdminHomeController', function () {
 		expect(1).toEqual(
 			1
 		);
+
+	});
+
+	it("should call userfactorys logout function when logging out", function () {
+
+		spyOn(mockUserFactory, "logout").and.callThrough();
+
+		$scope.logout();
+
+		expect(mockUserFactory.logout).toHaveBeenCalled();
 
 	});
 

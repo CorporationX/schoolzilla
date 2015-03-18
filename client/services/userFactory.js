@@ -20,6 +20,11 @@ angular.module("schoolApp").factory("userFactory", ["$rootScope", "$location", f
 			if (!this.getToken() || !this.getUser()) {
 				$location.path("/login");
 			}
+		},
+		logout: function () {
+			this.setToken("");
+			this.setUser({});
+			$location.path("/login");
 		}
 	};
 

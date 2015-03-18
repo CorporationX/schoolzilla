@@ -43,6 +43,9 @@ describe('StudentHomeController', function () {
 			},
 			checkValid: function () {
 
+			},
+			logout: function () {
+
 			}
 		};
 
@@ -105,6 +108,16 @@ describe('StudentHomeController', function () {
 		$rootScope.$apply();
 
 		expect($location.path).toHaveBeenCalledWith("/student/course/vef2/20151/evaluation/33");
+
+	});
+
+	it("should call userfactorys logout function when logging out", function () {
+
+		spyOn(mockUserFactory, "logout").and.callThrough();
+
+		$scope.logout();
+
+		expect(mockUserFactory.logout).toHaveBeenCalled();
 
 	});
 
