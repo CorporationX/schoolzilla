@@ -19,7 +19,13 @@ angular.module("schoolApp").controller("AdminHomeController", ["$scope", "$modal
 					}
 				});
 				$scope.modalInstance.result.then(function (newQuestion) {
-					console.log("new question is", newQuestion);
+
+					apiFactory.adminPostEvaluation(newQuestion).then(function () {
+
+						$scope.init();
+
+					});
+
 				});
 			});
 

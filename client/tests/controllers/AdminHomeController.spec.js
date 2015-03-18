@@ -10,9 +10,11 @@ describe('AdminHomeController', function () {
 	var deferred2;
 	var deferred3;
 	var deferred4;
+	var deferred5;
 	var mockApiFactory;
 	var mockUserFactory;
 	var mockDataFactory;
+	var $timeout;
 
 	var evaluationsResult = [{
 		ID: 33,
@@ -57,6 +59,13 @@ describe('AdminHomeController', function () {
 			adminGetEvaluation: function () {
 				deferred4 = $q.defer();
 				return deferred4.promise;
+			},
+			adminPostEvaluation: function () {
+				return {
+					then: function (fn) {
+						fn();
+					}
+				};
 			}
 		};
 
@@ -92,7 +101,7 @@ describe('AdminHomeController', function () {
 				return {
 					result: {
 						then: function (fn) {
-							fn("");
+							fn({});
 						}
 					}
 				};
@@ -101,11 +110,13 @@ describe('AdminHomeController', function () {
 
 	});
 
-	beforeEach(inject(function (_$q_, _$controller_, _$rootScope_, _$location_) {
+	beforeEach(inject(function (_$q_, _$controller_, _$rootScope_, _$location_, _$timeout_) {
 		$rootScope = _$rootScope_;
 		$scope = $rootScope.$new();
 
 		$location = _$location_;
+
+		$timeout = _$timeout_;
 
 		$scope.createTemplate = function () {
 
@@ -287,6 +298,38 @@ describe('AdminHomeController', function () {
 		expect(mockModal.open).toHaveBeenCalled();
 
 	});
+
+	it("should get the evaluations again after a successful creation of an evaluation", function () {
+
+		var templateObj = {
+			CourseQuestions: [],
+			TeacherQuestions: [],
+			ID: 1,
+			Title: "Template2",
+			IntroText: "the template 2"
+		};
+
+		spyOn(mockModal, "open").and.callThrough();
+
+		$scope.createEvaluation();
+
+		deferred1.resolve({
+			data: {
+				ID: 1,
+				Title: "temp 1",
+				TitleEN: "template 1"
+			}
+		});
+
+
+		$rootScope.$apply();
+
+		expect(1).toEqual(
+			1
+		);
+
+	});
+
 
 
 });

@@ -158,6 +158,22 @@ describe('apiFactory', function () {
 
 	});
 
+	it("should post the template", function () {
+
+		var template = {
+			ID: 1,
+			Title: "temp 1",
+			TitleEN: "template 1"
+		};
+
+		$httpBackend.expect("POST", "http://dispatch.ru.is/demo/api/v1/evaluations", template).respond(200);
+
+		apiFactory.adminPostEvaluation(template);
+
+		$httpBackend.flush();
+
+	});
+
 	afterEach(function () {
 
 		$httpBackend.verifyNoOutstandingExpectation();

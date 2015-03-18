@@ -35,6 +35,9 @@ angular.module("schoolApp").factory("apiFactory", ["$http", "userFactory", funct
 		},
 		adminPostTemplate: function (template) {
 			return $http.post("http://dispatch.ru.is/demo/api/v1/evaluationtemplates", template);
+		},
+		adminPostEvaluation: function (evaluation) {
+			return $http.post("http://dispatch.ru.is/demo/api/v1/evaluations", evaluation);
 		}
 	};
 
