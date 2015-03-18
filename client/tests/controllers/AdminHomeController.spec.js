@@ -86,6 +86,9 @@ describe('AdminHomeController', function () {
 				if (obj.resolve && obj.resolve.currentTemplate) {
 					obj.resolve.currentTemplate();
 				}
+				if (obj.resolve && obj.resolve.templates) {
+					obj.resolve.templates();
+				}
 				return {
 					result: {
 						then: function (fn) {
@@ -257,6 +260,33 @@ describe('AdminHomeController', function () {
 		expect($location.path).toHaveBeenCalledWith("/admin/results");
 	});
 
+	it("should open a modal with the correct parameters when creating an evaluation", function () {
+
+		var templateObj = {
+			CourseQuestions: [],
+			TeacherQuestions: [],
+			ID: 1,
+			Title: "Template2",
+			IntroText: "the template 2"
+		};
+
+		spyOn(mockModal, "open").and.callThrough();
+
+		$scope.createEvaluation();
+
+		deferred1.resolve({
+			data: {
+				ID: 1,
+				Title: "temp 1",
+				TitleEN: "template 1"
+			}
+		});
+
+		$rootScope.$apply();
+
+		expect(mockModal.open).toHaveBeenCalled();
+
+	});
 
 
 });

@@ -11,16 +11,32 @@ angular.module("schoolApp").controller("NewEvaluationModalController", ["$scope"
 		$scope.errors = {
 			templateIDError: false,
 			StartDateError: false,
-			EndDateError: false
+			EndDateError: false,
+			show: false
 		};
 
 		$scope.ok = function () {
 			if ($scope.evalObject.templateID === "") {
 				$scope.errors.templateIDError = true;
-			} else if ($scope.evalObject.StartDate === "") {
+			} else {
+				$scope.errors.templateIDError = false;
+			}
+
+			if ($scope.evalObject.StartDate === "") {
 				$scope.errors.StartDateError = true;
-			} else if ($scope.evalObject.EndDate === "") {
+			} else {
+				$scope.errors.StartDateError = false;
+			}
+
+			if ($scope.evalObject.EndDate === "") {
 				$scope.errors.EndDateError = true;
+			} else {
+				$scope.errors.EndDateError = false;
+			}
+
+			if ($scope.errors.templateIDError || $scope.errors.StartDateError || $scope.errors.EndDateError) {
+				$scope.errors.show = true;
+				return;
 			} else {
 				$scope.evalObject.templateID = parseInt($scope.evalObject.templateID, 10);
 				$modalInstance.close($scope.evalObject);
