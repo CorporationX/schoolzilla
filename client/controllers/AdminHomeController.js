@@ -7,11 +7,6 @@ angular.module("schoolApp").controller("AdminHomeController", ["$scope", "$modal
 			$location.path("/admin/newtemplate");
 		};
 
-
-		// apiFactory.adminGetTemplates().then(function (results) {
-		// 	console.log("NewEvaluationModalController templates", results);
-		// 	$scope.templates = results.data;
-		// });
 		$scope.createEvaluation = function () {
 			apiFactory.adminGetTemplates().then(function (results) {
 				$scope.modalInstance = $modal.open({
