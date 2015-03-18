@@ -1,12 +1,12 @@
 <div class="row" ng-repeat="value in values">
 
-	<div class="col-xs-3">
+	<div class="col-xs-5">
 		{{value.AnswerText}} 
 		<br>
 		(<span class="italic">{{value.AnswerTextEN}}</span>)		
 	</div>
 
-	<div class="col-xs-9">
+	<div class="col-xs-7">
 		<meter value="{{value.Count}}" min="0" max="{{values.length}}"></meter> <span>{{value.Count}}</span>
 	</div>
 
