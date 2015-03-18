@@ -19,7 +19,7 @@
 					</tr>
 					<tbody ng-repeat="temp in templates">
 						<tr class="tablecolor">
-							<td class="col-xs-10">{{temp.Title}}</td>
+							<td class="col-xs-10">{{temp.Title}} (<span class="italic">{{temp.TitleEN}}</span>)</td>
 							<td class="col-xs-2">
 								<button class="pull-right btn btn-default btn-sm backgroundcolor" ng-click="viewTemplate(temp.ID)" >Skoða (<span class="italic">View</span>)
 								</button>
@@ -49,7 +49,7 @@
 					</tr>
 					<tbody ng-repeat="eval in evaluations">
 						<tr class="tablecolor">
-							<td class="col-xs-4">{{eval.TemplateTitle}}</td>
+							<td class="col-xs-4">{{eval.TemplateTitle}} (<span class="italic">{{eval.TemplateTitleEN}}</span>)</td>
 							<td class="col-xs-2 hidden-sm hidden-xs">
 								{{eval.StartDate | date:"mediumDate"}} <br>
 								{{eval.StartDate | date:"shortTime"}}
