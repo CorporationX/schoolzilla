@@ -14,7 +14,7 @@ describe('apiFactory', function () {
 
 	it("should post to the login route with the username and password provided", function () {
 
-		$httpBackend.expect("POST", "http://dispatch.ru.is/demo/api/v1/login", {
+		$httpBackend.expect("POST", "http://dispatch.ru.is/h30/api/v1/login", {
 			user: "kristjanj11",
 			pass: 123456
 		}).respond(200);
@@ -27,7 +27,7 @@ describe('apiFactory', function () {
 
 	it("should get the student evaluations when requested", function () {
 
-		$httpBackend.expect("GET", "http://dispatch.ru.is/demo/api/v1/my/evaluations").respond(200);
+		$httpBackend.expect("GET", "http://dispatch.ru.is/h30/api/v1/my/evaluations").respond(200);
 
 		apiFactory.studentGetEvaluations();
 
@@ -44,7 +44,7 @@ describe('apiFactory', function () {
 			evalID: 123
 		};
 
-		$httpBackend.expect("GET", "http://dispatch.ru.is/demo/api/v1/courses/vef2/20151/evaluations/123").respond(200);
+		$httpBackend.expect("GET", "http://dispatch.ru.is/h30/api/v1/courses/vef2/20151/evaluations/123").respond(200);
 
 		apiFactory.studentGetEvaluation(evaluationVariables);
 
@@ -60,7 +60,7 @@ describe('apiFactory', function () {
 			evalID: 123
 		};
 
-		$httpBackend.expect("GET", "http://dispatch.ru.is/demo/api/v1/courses/vef2/20151/teachers").respond(200);
+		$httpBackend.expect("GET", "http://dispatch.ru.is/h30/api/v1/courses/vef2/20151/teachers").respond(200);
 
 		apiFactory.studentGetTeachers(evaluationVariables);
 
@@ -70,7 +70,7 @@ describe('apiFactory', function () {
 
 	it("should get the admin evaluations when requested", function () {
 
-		$httpBackend.expect("GET", "http://dispatch.ru.is/demo/api/v1/evaluations").respond(200);
+		$httpBackend.expect("GET", "http://dispatch.ru.is/h30/api/v1/evaluations").respond(200);
 
 		apiFactory.adminGetEvaluations();
 
@@ -80,7 +80,7 @@ describe('apiFactory', function () {
 
 	it("should get the admin templates when requested", function () {
 
-		$httpBackend.expect("GET", "http://dispatch.ru.is/demo/api/v1/evaluationtemplates").respond(200);
+		$httpBackend.expect("GET", "http://dispatch.ru.is/h30/api/v1/evaluationtemplates").respond(200);
 
 		apiFactory.adminGetTemplates();
 
@@ -92,7 +92,7 @@ describe('apiFactory', function () {
 
 		var templateID = 12;
 
-		$httpBackend.expect("GET", "http://dispatch.ru.is/demo/api/v1/evaluationtemplates/12").respond(200);
+		$httpBackend.expect("GET", "http://dispatch.ru.is/h30/api/v1/evaluationtemplates/12").respond(200);
 
 		apiFactory.adminGetTemplate(templateID);
 
@@ -113,7 +113,7 @@ describe('apiFactory', function () {
 			Value: "good"
 		}];
 
-		$httpBackend.expect("POST", "http://dispatch.ru.is/demo/api/v1/courses/vef2/20151/evaluations/123", evaluationItems).respond(200);
+		$httpBackend.expect("POST", "http://dispatch.ru.is/h30/api/v1/courses/vef2/20151/evaluations/123", evaluationItems).respond(200);
 
 		apiFactory.studentPostEvaluation(evaluationVariables, evaluationItems);
 
@@ -126,7 +126,7 @@ describe('apiFactory', function () {
 
 		var templateID = 12;
 
-		$httpBackend.expect("GET", "http://dispatch.ru.is/demo/api/v1/evaluations/12").respond(200);
+		$httpBackend.expect("GET", "http://dispatch.ru.is/h30/api/v1/evaluations/12").respond(200);
 
 		apiFactory.adminGetEvaluation(templateID);
 
@@ -150,7 +150,7 @@ describe('apiFactory', function () {
 			TeacherQuestions: []
 		};
 
-		$httpBackend.expect("POST", "http://dispatch.ru.is/demo/api/v1/evaluationtemplates", template).respond(200);
+		$httpBackend.expect("POST", "http://dispatch.ru.is/h30/api/v1/evaluationtemplates", template).respond(200);
 
 		apiFactory.adminPostTemplate(template);
 
@@ -166,7 +166,7 @@ describe('apiFactory', function () {
 			TitleEN: "template 1"
 		};
 
-		$httpBackend.expect("POST", "http://dispatch.ru.is/demo/api/v1/evaluations", template).respond(200);
+		$httpBackend.expect("POST", "http://dispatch.ru.is/h30/api/v1/evaluations", template).respond(200);
 
 		apiFactory.adminPostEvaluation(template);
 
