@@ -60,6 +60,88 @@ describe('NewEvaluationModalController', function () {
 
 	});
 
+	it("should add a templateID error if we try to click ok without one", function () {
 
+		$scope.ok();
+
+		$rootScope.$apply();
+
+		expect($scope.errors.templateIDError).toEqual(true);
+
+	});
+
+	it("should not add a templateID error if we try to click ok without one", function () {
+		$scope.evalObject.templateID = 12;
+
+		$scope.ok();
+
+		$rootScope.$apply();
+
+		expect($scope.errors.templateIDError).toEqual(false);
+
+	});
+
+	it("should add a startDate error if we try to click ok without one", function () {
+
+		$scope.ok();
+
+		$rootScope.$apply();
+
+		expect($scope.errors.StartDateError).toEqual(true);
+
+	});
+
+	it("should not add a startDate error if we try to click ok without one", function () {
+
+		$scope.evalObject.StartDate = new Date();
+
+		$scope.ok();
+
+		$rootScope.$apply();
+
+		expect($scope.errors.StartDateError).toEqual(false);
+
+	});
+
+	it("should add a endDate error if we try to click ok without one", function () {
+
+		$scope.evalObject.templateID = 12;
+		$scope.evalObject.StartDate = new Date();
+
+		$scope.ok();
+
+		$rootScope.$apply();
+
+		expect($scope.errors.EndDateError).toEqual(true);
+
+	});
+
+	it("should not add a endDate error if we try to click ok without one", function () {
+
+		$scope.evalObject.EndDate = new Date();
+
+		$scope.ok();
+
+		$rootScope.$apply();
+
+		expect($scope.errors.EndDateError).toEqual(false);
+
+	});
+
+	it("should close and send the object along only if there are no errors", function () {
+
+		spyOn(mockModalInstance, "close");
+
+		$scope.evalObject.EndDate = new Date();
+		$scope.evalObject.StartDate = new Date();
+		$scope.evalObject.templateID = 12;
+
+		$scope.ok();
+
+		$rootScope.$apply();
+
+		expect(mockModalInstance.close).toHaveBeenCalledWith($scope.evalObject);
+
+	});
 
 });
