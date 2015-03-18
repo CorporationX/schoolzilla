@@ -15,11 +15,11 @@
 				<div class="col-xs-9">
 					<select ng-model="question.category">
 						<option value="Course question">
-							Áfanga spurning <br>
+							Áfangaspurning <br>
 							(<span class="italic">Course question</span>)
 						</option>
 						<option value="Teacher question">
-							Kennara spurning <br>
+							Kennaraspurning <br>
 							(<span class="italic">Teacher question</span>)
 						</option>
 					</select>
@@ -38,8 +38,8 @@
 							(<span class="italic">Text</span>)
 						</option>
 						<option value="single">
-							Einn valmöguleiki <br>
-							(<span class="italic">Single</span>)
+							Krossar<br>
+							(<span class="italic">Multiple choice</span>)
 						</option>
 					</select>
 				</div>
@@ -93,14 +93,12 @@
 			</div>
 		</div>
 				<div class="row">
-					<div class="col-xs-3"></div>
-					<div class="col-xs-4">
+					<div class="col-xs-4 col-xs-offset-4">
 						<button class="btn btn-default" ng-click="addOption()">
 							Bæta við valmöguleika <br>
 							(<span class="italic">Add option</span>)
 						</button>
 					</div>
-					<div class="col-xs-5"></div>
 				</div>
 			
 				<div class="errorBlock" ng-show="errors.show">	

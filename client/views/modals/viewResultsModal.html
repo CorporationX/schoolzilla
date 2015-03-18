@@ -1,38 +1,40 @@
 <div class="modal-header">
 	<h3 class="modal-title text-center">
-		Niðurstöður fyrir {{template.TemplateTitle}} <br>
-		(<span class="italic">Results for {{template.TemplateTitleEN}} </span>)
+		Niðurstöður úr: {{template.TemplateTitle}} <br> fyrir: {{results.CourseName}} {{results.Semester}} <br>
+		<h4 class="text-center">(<span class="italic">Results from: {{template.TemplateTitleEN}} <br> for:  {{results.CourseName}} {{results.Semester}}</span>)</h4>
 	</h3>
 
 </div>
 
 <div class="modal-body">
-	
-	<h4 class="text-center">
-		{{results.CourseName}} {{results.Semester}} <br>
-		(<span class="italic">{{results.CourseNameEN}} {{results.Semester}} </span>)
-	</h4>
-
 	<accordion close-others="oneAtATime">
 
 		<accordion-group ng-repeat="result in results.Questions" is-open="status.open">
 
 			<accordion-heading>
-			Spurning: {{result.Text}} 
-			<br>
-			(<span class="italic">Question: {{result.TextEN}}</span>)
-			<br>
-			<span ng-show="result.TeacherSSN === null">
-				Áfangaspurning <br>
-				(<span class="italic">Course question</span>)
-			</span>
-			<span ng-show="result.TeacherSSN !== null">
-				Kennaraspurning handa {{result.TeacherSSN}} <br>
-				(<span class="italic">Teacher question for {{result.TeacherSSN}}</span>)
-			</span>
-			 
-			<!-- Spurningar fyrir (<span class="italic">Questions for</span>): {{teacher.FullName}} --> 
-			<i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
+			<div class="row">
+				<div class="col-xs-5">
+					<span class="bold">Spurning:</span> <br>{{result.Text}} 
+					<br>
+					(<span class="italic"><span class="bold">Question:</span><br>  {{result.TextEN}}</span>)
+					<br>
+				</div>
+				<div class="col-xs-5">
+					<span ng-show="result.TeacherSSN === null">
+						<span class="bold">Tegund: <br></span>Áfangaspurning <br>
+						(<span class="italic"><span class="bold">Type:</span><br> Course question</span>)
+					</span>
+					<span ng-show="result.TeacherSSN !== null">
+						<span class="bold">Tegund: </span><br>Kennaraspurning handa {{result.TeacherSSN}} <br>
+						(<span class="italic"><span class="bold">Type:</span><br> Teacher question for {{result.TeacherSSN}}</span>)
+					</span>
+				</div>	
+				<div class="col-xs-2">		 
+					<!-- Spurningar fyrir (<span class="italic">Questions for</span>): {{teacher.FullName}} --> 
+					<i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
+				</div>
+			</div>
+	
 			</accordion-heading>
 
 			<div ng-show="result.TextResults.length">
@@ -47,16 +49,10 @@
 					Count: {{optionResult.Count}}
 				</div>
 			</div>
-			
-			<!-- <evaluation-question ng-repeat="teacherQ in evaluation.data.TeacherQuestions" answers="answers" ng-model="teacherQ" teacher="teacher.SSN">
-			</evaluation-question>	 --> 
 
 		</accordion-group>
 
 	</accordion>
-
-	{{results}}
-	{{template}}
 
 </div>
 
