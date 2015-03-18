@@ -9,8 +9,10 @@ describe('AdminHomeController', function () {
 	var deferred1;
 	var deferred2;
 	var deferred3;
+	var deferred4;
 	var mockApiFactory;
 	var mockUserFactory;
+	var mockDataFactory;
 
 	var evaluationsResult = [{
 		ID: 33,
@@ -51,6 +53,10 @@ describe('AdminHomeController', function () {
 			adminGetTemplate: function () {
 				deferred3 = $q.defer();
 				return deferred3.promise;
+			},
+			adminGetEvaluation: function () {
+				deferred4 = $q.defer();
+				return deferred4.promise;
 			}
 		};
 
@@ -66,6 +72,15 @@ describe('AdminHomeController', function () {
 			}
 		};
 
+		mockDataFactory = {
+			setEvaluationResults: function (results) {
+
+			},
+			getEvaluationResults: function () {
+
+			}
+		};
+
 		mockModal = {
 			open: function (obj) {
 				if (obj.resolve && obj.resolve.currentTemplate) {
@@ -74,7 +89,7 @@ describe('AdminHomeController', function () {
 				return {
 					result: {
 						then: function (fn) {
-							fn("pizzahut");
+							fn("");
 						}
 					}
 				};
@@ -100,7 +115,8 @@ describe('AdminHomeController', function () {
 			$modal: mockModal,
 			apiFactory: mockApiFactory,
 			userFactory: mockUserFactory,
-			$location: _$location_
+			$location: _$location_,
+			dataFactory: mockDataFactory
 		});
 
 	}));
@@ -192,26 +208,53 @@ describe('AdminHomeController', function () {
 
 	});
 
-	it("should open a modal with the template specified", function () {
+	it("should set evaluation results before redirecting to view them", function () {
 
-		newQuestionObject = {
-			Text: "a",
-			TextEN: "b",
-			type: "single",
-			Answers: []
+		spyOn(mockDataFactory, "setEvaluationResults");
+
+		var evaluationResult = {
+			data: {
+				Course: [],
+				ID: 1,
+				TemplateID: 4,
+				TemplateTitle: "temp title 1"
+			}
 		};
 
-		spyOn(mockModal, "open").and.callThrough();
+		$scope.viewResult(12);
 
-		$scope.createEvaluation();
+		deferred4.resolve({
+			data: evaluationResult
+		});
 
 		$rootScope.$apply();
 
-		expect(mockModal.open).toHaveBeenCalledWith({
-			templateUrl: "/client/views/modals/newEvaluationModal.html",
-			controller: "NewEvaluationModalController"
+		expect(mockDataFactory.setEvaluationResults).toHaveBeenCalledWith(evaluationResult);
+
+	});
+
+	it("should redirect after getting the evaluation results and setting them", function () {
+
+		spyOn($location, "path");
+
+		var evaluationResult = {
+			data: {
+				Course: [],
+				ID: 1,
+				TemplateID: 4,
+				TemplateTitle: "temp title 1"
+			}
+		};
+
+		$scope.viewResult(12);
+
+		deferred4.resolve({
+			data: evaluationResult
 		});
 
+		$rootScope.$apply();
+
+		expect($location.path).toHaveBeenCalledWith("/admin/results");
 	});
 
 

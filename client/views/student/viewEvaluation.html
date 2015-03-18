@@ -33,11 +33,11 @@
 
 			 	<accordion close-others="oneAtATime">
 	    			<accordion-group ng-repeat="teacher in evaluation.teachers" is-open="status.open">
-	        		<accordion-heading>
-	           		 Spurningar fyrir (<span class="italic">Questions for</span>): {{teacher.FullName}} <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
-	        		</accordion-heading>
-					<evaluation-question ng-repeat="teacherQ in evaluation.data.TeacherQuestions" answers="answers" ng-model="teacherQ" teacher="teacher.SSN">
-					</evaluation-question>	    		
+		        		<accordion-heading>
+		           		 Spurningar fyrir (<span class="italic">Questions for</span>): {{teacher.FullName}} <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
+		        		</accordion-heading>
+						<evaluation-question ng-repeat="teacherQ in evaluation.data.TeacherQuestions" answers="answers" ng-model="teacherQ" teacher="teacher.SSN">
+						</evaluation-question>	    		
 					</accordion-group>
 	  			</accordion>
 			

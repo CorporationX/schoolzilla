@@ -1,6 +1,6 @@
-angular.module("schoolApp").controller("AdminHomeController", ["$scope", "$modal", "apiFactory", "userFactory", "$location",
+angular.module("schoolApp").controller("AdminHomeController", ["$scope", "$modal", "apiFactory", "userFactory", "$location", "dataFactory",
 
-	function ($scope, $modal, apiFactory, userFactory, $location) {
+	function ($scope, $modal, apiFactory, userFactory, $location, dataFactory) {
 
 		$scope.createTemplate = function () {
 
@@ -52,17 +52,12 @@ angular.module("schoolApp").controller("AdminHomeController", ["$scope", "$modal
 		$scope.viewResult = function (evalID) {
 
 			apiFactory.adminGetEvaluation(evalID).then(function (results) {
-				console.log("viewResults: ", results);
 
-				var modalInstance = $modal.open({
-					templateUrl: "/client/views/modals/viewResults.html",
-					controller: "ViewResultsController",
-					resolve: {
-						currentTemplate: function () {
-							return results.data;
-						}
-					}
-				});
+				$scope.kris = "kris";
+
+				dataFactory.setEvaluationResults(results.data);
+
+				$location.path("/admin/results");
 
 			});
 

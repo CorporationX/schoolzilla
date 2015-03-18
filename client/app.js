@@ -19,6 +19,10 @@ angular.module("schoolApp", ["ngRoute", "ui.bootstrap", "ui.bootstrap.datetimepi
 			templateUrl: "/client/views/admin/newTemplate.html",
 			controller: "AdminNewTemplateController"
 		})
+		.when("/admin/results", {
+			templateUrl: "/client/views/admin/viewResults.html",
+			controller: "AdminViewResultsController"
+		})
 		.otherwise({
 			redirectTo: "/login"
 		});
