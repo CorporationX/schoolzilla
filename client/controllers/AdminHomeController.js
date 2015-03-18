@@ -38,8 +38,6 @@ angular.module("schoolApp").controller("AdminHomeController", ["$scope", "$modal
 		$scope.viewTemplate = function (templateID) {
 
 			apiFactory.adminGetTemplate(templateID).then(function (results) {
-				console.log("viewTemplate: ", results);
-
 				var modalInstance = $modal.open({
 					templateUrl: "/client/views/modals/viewTemplateModal.html",
 					controller: "ViewTemplateModalController",
@@ -76,14 +74,10 @@ angular.module("schoolApp").controller("AdminHomeController", ["$scope", "$modal
 			$scope.evaluations = [];
 
 			apiFactory.adminGetTemplates().then(function (results) {
-				console.log("AdminHomeController templates", results);
-
 				$scope.templates = results.data;
 			});
 
 			apiFactory.adminGetEvaluations().then(function (results) {
-				console.log("AdminHomeController evaluations", results);
-
 				$scope.evaluations = results.data;
 			});
 
