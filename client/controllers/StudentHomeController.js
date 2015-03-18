@@ -12,8 +12,6 @@ angular.module("schoolApp").controller("StudentHomeController", ["$scope", "$loc
 			userFactory.checkValid();
 
 			apiFactory.studentGetEvaluations().then(function (results) {
-				console.log("StudentHomeController results", results);
-
 				$scope.evaluations = results.data;
 			});
 		};

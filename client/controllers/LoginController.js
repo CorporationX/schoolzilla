@@ -18,7 +18,6 @@ angular.module("schoolApp").controller("LoginController", ["$scope", "$location"
 				apiFactory.login($scope.user.username, $scope.user.password)
 					.then(function (results) {
 
-						console.log("LoginController results", results);
 						if (results.status === 200) {
 
 							userFactory.setUser(results.data.User);

@@ -41,8 +41,6 @@ angular.module("schoolApp").controller("StudentViewEvaluationController", ["$sco
 				}
 
 			}
-
-			console.log("try sending", $scope.evaluationAnswers, "with properties", $scope.evaluationVariables);
 			apiFactory.studentPostEvaluation($scope.evaluationVariables, $scope.evaluationAnswers).then(function (results) {
 				$location.path("/student/home");
 			});
@@ -55,12 +53,10 @@ angular.module("schoolApp").controller("StudentViewEvaluationController", ["$sco
 
 			apiFactory.studentGetEvaluation($scope.evaluationVariables).then(function (results) {
 				$scope.evaluation.data = results.data;
-				console.log("StudentViewEvaluationController evaluation results", results);
 			});
 
 			apiFactory.studentGetTeachers($scope.evaluationVariables).then(function (results) {
 				$scope.evaluation.teachers = results.data;
-				console.log("StudentViewEvaluationController teacher results", results);
 			});
 
 		};
